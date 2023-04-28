@@ -2,6 +2,8 @@
 
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const loader = require("sass-loader");
 
 const isProduction = process.env.NODE_ENV == "production";
 
@@ -21,6 +23,12 @@ const config = {
       template: "index.html",
     }),
 
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/images', to: 'images' },
+      ],
+    }),
+
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
   ],
@@ -36,8 +44,12 @@ const config = {
         use: [stylesHandler, "css-loader", "sass-loader"],
       },
       {
-        test: /\.(eot|svg|ttf|woff|woff2|png|jpg|gif)$/i,
-        type: "asset",
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: 'images/[name][ext]', 
+        },
+        include: path.resolve(__dirname, 'src', 'images')
       },
 
       // Add your rules for custom modules here
