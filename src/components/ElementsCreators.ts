@@ -17,10 +17,10 @@ export const createDivElement = (toAppend: Array<HTMLElement>, classList: string
     return newDiv
 }
 
-export const createImgElement = (image: string) => {
+export const createImgElement = (image: string, source: string, alt: string, altName: string) => {
     const newImgElement: HTMLImageElement = document.createElement("img")
-    newImgElement.setAttribute("src", image)
-    newImgElement.setAttribute("alt", "avatar")
+    newImgElement.setAttribute(source, image)
+    newImgElement.setAttribute(alt, altName)
     return newImgElement
 }
 

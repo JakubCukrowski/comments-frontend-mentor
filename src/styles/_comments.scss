@@ -2,6 +2,10 @@ body {
     background-color: $very_light_gray;
 }
 
+button {
+    cursor: pointer;
+}
+
 .comments-section {
     max-width: 100%;
     min-height: 100vh;
@@ -9,18 +13,23 @@ body {
     .container {
         padding: 14px;
 
-        .comments {
+        .comments,
+        .replies-container {
             list-style: none;
         }
     }
+
+    .replies-container {
+        padding-left: 20px;
+    }
 }
 
-li {
+.comment-wrapper {
     display: flex;
     flex-direction: column;
     background-color: $white;
-    padding: 20px;
-    margin-bottom: 0.8em;
+    padding: 12px;
+    margin-bottom: 1em;
     border-radius: 0.4em;
     
     @media screen and (min-width: 600px) {
@@ -35,7 +44,7 @@ li {
     }
 
     .user-info {
-        width: 75%;
+        width: 80%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -82,9 +91,27 @@ li {
 }
 
 .reply-button {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0.5em;
+    background-color: transparent;
+    border: none;
+    color: $moderate_blue;
+    font-weight: 500;
+
+    img {
+        width: 10px;
+        height: 10px;
+    }
+
     @media screen and (min-width: 600px) {
         position: absolute;
         right: 0;
         top: 10%;
     }
+}
+
+.replies-container {
+    border-left: 2px solid $light_gray;
 }

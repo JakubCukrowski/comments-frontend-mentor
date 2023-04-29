@@ -1,57 +1,41 @@
 import "./styles/main.scss"
-import {
-    createSpanElement, 
-    createButtonElement, 
-    createDivElement,
-    createImgElement
-} from "./components/ElementsCreators"
+
 import {loggedUser, comments} from "./components/Comments"
+import {renderComments} from "./components/RenderComments"
+import {renderReplies} from "./components/RenderReplies"
 
-const commentsContainer: HTMLElement = document.querySelector(".comments")
-
-const renderComments = (
-    image: string, 
-    username: string, 
-    date: string, 
-    content: string,
-    upvotes: number,
-    reply: string
-    ) => {
-    const newLiElement: HTMLLIElement = document.createElement("li")
-
-    //top section of the comment
-    const newImage: HTMLImageElement = createImgElement(image)
-    const name: HTMLSpanElement = createSpanElement(username, "nick")
-    const createdAt: HTMLSpanElement = createSpanElement(date, "created-at")
-
-    const userInfoDiv: HTMLDivElement = createDivElement([newImage, name, createdAt], "user-info")
-
-    //content of the comment
-    const newPelement: HTMLParagraphElement = document.createElement("p")
-    newPelement.innerText = content
-
-    //content with user info
-    const commentContentDiv: HTMLDivElement = createDivElement([userInfoDiv, newPelement], "content")
-
-    //bottom section - buttons 
-    const upvoteBtn: HTMLButtonElement = createButtonElement("+")
-    const downvoteBtn: HTMLButtonElement = createButtonElement("-")
-    const votesSpan: HTMLSpanElement = createSpanElement(upvotes)
-    const upvotesDiv: HTMLDivElement = createDivElement([upvoteBtn, votesSpan, downvoteBtn], "votes")
-
-    const replyBtn: HTMLButtonElement = createButtonElement(reply, "reply-button")
-    replyBtn.addEventListener("click", (e: Event) => {
-        newLiElement.append(document.createElement("div"))
-        
-    })
-
-    const buttonsContaier = createDivElement([upvotesDiv, replyBtn], "buttons-container")
-
-    newLiElement.append(commentContentDiv, buttonsContaier)
-    commentsContainer.append(newLiElement)
-
-}
+const commentsContainer: HTMLUListElement = document.querySelector(".comments")
+export const commentElements: NodeListOf<HTMLLIElement> = document.querySelectorAll("li")
 
 comments.commentsData.forEach(comment => {
-    renderComments(comment.user.image.png, comment.user.username, comment.createdAt, comment.content, comment.score, "Reply")
+    const repliesContainer: HTMLUListElement = document.createElement("ul")
+    repliesContainer.classList.add("replies-container")
+    const renderedComments: HTMLLIElement = renderComments(
+        comment.user.image.png, 
+        comment.user.username, 
+        comment.createdAt, 
+        comment.content, 
+        comment.score, 
+        "Reply", 
+        comment.id)
+
+        comment.replies.forEach(reply => {
+            const renderedReplies: HTMLLIElement = renderReplies(
+                reply.user.image.png,
+                reply.user.username,
+                reply.createdAt,
+                reply.content,
+                reply.score,
+                "Reply",
+                reply.id
+            )
+            repliesContainer.append(renderedReplies)
+            renderedComments.append(repliesContainer)
+        })
+
+       
+    commentsContainer.append(renderedComments)
+        
 })
+
+
