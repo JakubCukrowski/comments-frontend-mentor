@@ -5,6 +5,8 @@ import {
     createImgElement
 } from "./ElementsCreators"
 
+import { createReply } from "./CreateReply"
+
 export const renderComments = (
     image: string, 
     username: string, 
@@ -58,6 +60,8 @@ export const renderComments = (
     const replyImage: HTMLImageElement = createImgElement("./images/icon-reply.svg", "src", "alt", "arrow")
     const replyBtn: HTMLButtonElement = createButtonElement(reply, "reply-button")
     replyBtn.append(replyImage)
+
+    replyBtn.addEventListener("click", createReply)
 
     const buttonsContaier = createDivElement([upvotesDiv, replyBtn], "buttons-container")
 

@@ -24,7 +24,41 @@ button {
     }
 }
 
-.comment-wrapper {
+.new-list {
+    list-style: none;
+
+    li {
+        margin-top: -10px;
+    }
+}
+
+.reply-wrapper {
+    
+
+    input[type="textarea"] {
+        height: 120px;
+        border-radius: 6px;
+        border: 0.75px solid black;
+    }
+
+    .bottom-reply-section {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1em;
+
+        button {
+            border-radius: 6px;
+            padding: 8px 12px;
+            border: none;
+            background-color: $moderate_blue;
+            color: white;
+        }
+    }
+}
+
+.comment-wrapper,
+.reply-wrapper {
     display: flex;
     flex-direction: column;
     background-color: $white;
@@ -44,7 +78,7 @@ button {
     }
 
     .user-info {
-        width: 80%;
+        width: 246px;
         display: flex;
         justify-content: space-between;
         align-items: center;

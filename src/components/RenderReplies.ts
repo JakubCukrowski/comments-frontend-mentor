@@ -4,6 +4,7 @@ import {
     createDivElement, 
     createSpanElement
 } from "./ElementsCreators"
+import {createReply} from "./CreateReply"
 
 export const renderReplies = (
     image: string, 
@@ -22,7 +23,7 @@ export const renderReplies = (
 
     const userInfoDiv: HTMLDivElement = createDivElement([avatar, name, createdAt], "user-info")
 
-    //content of the comment
+    //content of the reply comment
     const newPelement: HTMLParagraphElement = document.createElement("p")
     newPelement.innerText = content
 
@@ -56,6 +57,8 @@ export const renderReplies = (
     const replyImage: HTMLImageElement = createImgElement("./images/icon-reply.svg", "src", "alt", "arrow")
     const replyBtn: HTMLButtonElement = createButtonElement(reply, "reply-button")
     replyBtn.append(replyImage)
+
+    replyBtn.addEventListener("click", createReply)
 
     const buttonsContaier = createDivElement([upvotesDiv, replyBtn], "buttons-container")
 
