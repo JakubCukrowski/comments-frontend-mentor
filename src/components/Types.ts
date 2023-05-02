@@ -6,37 +6,36 @@ export interface LoggedUser {
     username: string
 }
 
+export interface Replies {
+    id: number;
+    content: string;
+    createdAt: string;
+    score: number;
+    replyingTo: string;
+    user: {
+        image: {
+            png: string;
+            webp: string;
+        };
+        username: string;
+    },
+    replies?: Array<Replies>
+}
+
 export interface Comments {
-    commentsData: Array<{
-        id: number
-        content: string
-        createdAt: string
-        score: number
+    id: number
+    content: string
+    createdAt: string
+    score: number
 
-        user: {
-            image: {
-                png: string
-                webp: string
-            },
-
-            username: string
+    user: {
+        image: {
+            png: string
+            webp: string
         },
 
-        replies?: Array<{
-            id: number
-            content: string
-            createdAt: string
-            score: number
-            replyingTo: string
+        username: string
+    },
 
-            user: {
-                image: {
-                    png: string
-                    webp: string
-                }
-
-                username: string
-            }
-        }>
-    }>
+    replies: Array<Replies>
 }

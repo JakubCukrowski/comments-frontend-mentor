@@ -1,73 +1,67 @@
-import {
-    createSpanElement, 
-    createButtonElement, 
-    createDivElement,
-    createImgElement
-} from "./ElementsCreators"
+import { Comments } from "./Types"
+import {renderReplies} from "./RenderReplies"
+import {createReply} from "./CreateReply"
 
-import { createReply } from "./CreateReply"
+export const renderComments = (object: Array<Comments>) => {
+    object.forEach(comment => {
+        //ul of class comments created in HTML
+        const commentsUl:HTMLUListElement = document.querySelector(".comments")
 
-export const renderComments = (
-    image: string, 
-    username: string, 
-    date: string, 
-    content: string,
-    upvotes: number,
-    reply: string,
-    id: number
-    ) => {
-    const newLiElement: HTMLLIElement = document.createElement("li")
-    newLiElement.id = `comment-${id}`
+        //li element dynamically create
+        const newCommentLi: HTMLLIElement = document.createElement("li")
+        newCommentLi.addEventListener("click", createReply)
 
-    //top section of the comment
-    const avatar: HTMLImageElement = createImgElement(image, "src", "alt", "avatar")
-    const name: HTMLSpanElement = createSpanElement(username, "nick")
-    const createdAt: HTMLSpanElement = createSpanElement(date, "created-at")
+        newCommentLi.innerHTML = `
+            <div class="comment">
+                <div class="buttons-container">
+                    <div class="votes-container">
+                        <button class="upvotes">+</button>
+                        <span>${comment.score}</span>
+                        <button class="downvote">-</button>
+                    </div>
+                    <button class="reply-button">
+                        <img class="reply-image" src="./images/icon-reply.svg"></img>
+                        Reply
+                    </button>
+                </div>
+                <div class="comment-wrapper">
+                    <div class="userinfo">
+                        <img src="${comment.user.image.png}" alt="avatar"></img>
+                        <span class="username">${comment.user.username}</span>
+                        <span class="date">${comment.createdAt}</span>
+                    </div>
+                    <p>${comment.content}</p>
+                </div>
+            </div>
+        `
+        newCommentLi.id = `comment-${comment.id}`
 
-    const userInfoDiv: HTMLDivElement = createDivElement([avatar, name, createdAt], "user-info")
+        commentsUl.append(newCommentLi)
 
-    //content of the comment
-    const newPelement: HTMLParagraphElement = document.createElement("p")
-    newPelement.innerText = content
+        if (comment.replies.length > 0) {
+            const newRepliesUl: HTMLUListElement = document.createElement("ul")
+           
+            //append new ul to comment's li
+            newCommentLi.append(newRepliesUl)
 
-    //content with user info
-    const commentContentDiv: HTMLDivElement = createDivElement([userInfoDiv, newPelement], "content")
+            comment.replies.forEach(reply => {
+                               
+                                
+                const newReply: HTMLLIElement = renderReplies(
+                    reply.score,
+                    reply.user.image.png,
+                    reply.user.username,
+                    reply.createdAt,
+                    reply.content,
+                    reply.replyingTo,
+                    reply.id,
+                )
 
-    //bottom section - buttons 
-    let number: number;
-    number = upvotes
-
-    const upvoteBtn: HTMLButtonElement = createButtonElement("+")
-    const downvoteBtn: HTMLButtonElement = createButtonElement("-")
-    const votesSpan: HTMLSpanElement = createSpanElement(number)
-    upvoteBtn.addEventListener("click", () => {
-        if (number === upvotes) {
-            number++
-            votesSpan.innerText = `${number}`
+                newRepliesUl.append(newReply)
+                newRepliesUl.classList.add("replies-container")
+            })
+            
         }
-    })
-
-    downvoteBtn.addEventListener("click", () => {
-        
-        if (number > upvotes) {
-            number--
-            votesSpan.innerText = `${number}`
-        }
-    })
-
-    const upvotesDiv: HTMLDivElement = createDivElement([upvoteBtn, votesSpan, downvoteBtn], "votes")
-
-    const replyImage: HTMLImageElement = createImgElement("./images/icon-reply.svg", "src", "alt", "arrow")
-    const replyBtn: HTMLButtonElement = createButtonElement(reply, "reply-button")
-    replyBtn.append(replyImage)
-
-    replyBtn.addEventListener("click", createReply)
-
-    const buttonsContaier = createDivElement([upvotesDiv, replyBtn], "buttons-container")
-
-    const commentWrapperDiv: HTMLDivElement = createDivElement([commentContentDiv, buttonsContaier], "comment-wrapper")
-
-    newLiElement.append(commentWrapperDiv)
-    return newLiElement
-
+                                                                
+    })   
 }

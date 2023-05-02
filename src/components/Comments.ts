@@ -9,8 +9,7 @@ export const loggedUser: LoggedUser = {
     
 }
 
-export const comments: Comments = {
-    commentsData: [
+export const comments: Array<Comments> = [
         {
         id: 1,
         content: "Impressive! Though it seems the drag feature could be improved. But overall it looks incredible. You've nailed the design and the responsiveness at various breakpoints works really well.",
@@ -51,8 +50,8 @@ export const comments: Comments = {
                 webp: "./images/avatars/image-ramsesmiron.webp"
                 },
                 username: "ramsesmiron"
-            }
             },
+        },
 
             {
             id: 4,
@@ -71,4 +70,3 @@ export const comments: Comments = {
         ]
         }
     ]
-}
