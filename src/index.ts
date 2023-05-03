@@ -2,6 +2,7 @@ import "./styles/main.scss"
 import {renderComments} from "./components/RenderComments"
 import {comments} from "./components/Comments"
 import { Comments } from "./components/Types"
+import {addNewComment} from "./components/AddNewComment"
 
 const commentsToJSON: string = JSON.stringify(comments)
 if (localStorage.length === 0) {
@@ -11,4 +12,5 @@ if (localStorage.length === 0) {
 const getComments = localStorage.getItem("comments")
 export const commentsToObject: Array<Comments> = JSON.parse(getComments)
 renderComments(commentsToObject)
+addNewComment()
 

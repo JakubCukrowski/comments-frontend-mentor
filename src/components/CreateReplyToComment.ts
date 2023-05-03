@@ -1,13 +1,20 @@
 import { loggedUser } from "./Comments"
 import { commentsToObject } from "../index"
 
-export const createReply = (event: Event) => {
+export const createReplyToComment = (event: Event) => {
+    //target reply button on reply window
     const replyButton = event.target as Element
-    const commentLiElement = event.currentTarget as Element
+
+    //target li with event listener
+    const commentLiElement = event.currentTarget as Element   
+
+    //target last child of event, to determine where append the reply window
     const lastChildOfLi = commentLiElement.lastChild as Element
     
+    //comment which we are reffering to
     const filterComments = commentsToObject.filter(comment => commentLiElement.id === `comment-${comment.id}`)    
     
+    //logic to render new reply window
     if (replyButton.classList.contains("reply-button") || replyButton.classList.contains("reply-image")) {
         if (!replyButton.closest("ul").classList.contains("replies-container")) {
             const tempUl: HTMLUListElement = document.createElement("ul")
@@ -19,7 +26,7 @@ export const createReply = (event: Event) => {
             
             newReplyCreator.classList.add("new-reply-window")
             newReplyCreator.innerHTML = `
-                <div class="textarea" contenteditable>@${filterComments[0].user.username}</div>
+                <textarea class="textarea" maxlength="120">@${filterComments[0].user.username}</textarea>
                 <div class ="bottom-reply-container">
                     <img src="${loggedUser.image.png}" alt="avatar"></img>
                     <button class="submit-reply-btn">REPLY</button>
@@ -38,6 +45,6 @@ export const createReply = (event: Event) => {
             }
             
         
-        }
+        } 
     }
 }

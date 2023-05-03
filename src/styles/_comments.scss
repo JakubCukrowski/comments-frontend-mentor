@@ -35,6 +35,13 @@ li:not(.temp-li-element) {
                 font-weight: 700;
             }
 
+            .comment-author-flag {
+                background-color: $moderate_blue;
+                color: $white;
+                padding: 0.1em 0.4em;
+                border-radius: 0.2em;
+            }
+
         }
 
         .date {
@@ -46,6 +53,32 @@ li:not(.temp-li-element) {
             justify-content: space-between;
             align-items: center;
             margin-top: 1.5em;
+
+            .logged-user-buttons {
+                display: flex;
+                gap: 10px;
+                button {
+                    font-weight: 500;
+                    background-color: transparent;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.4em;
+
+                    img {
+                        width: 12px;
+                        height: 12px;
+                    }
+                }
+
+                .edit-btn {
+                    color: $moderate_blue;
+                }
+
+                .delete-btn {
+                    color: $soft_red;
+                }
+            }
 
             .votes-container {
                 padding: 8px;
@@ -104,7 +137,8 @@ li:not(.temp-li-element) {
 }
 
 
-.new-reply-window {
+.new-reply-window,
+.new-comment {
     margin-top: 10px;
     border-radius: 0.5em;
     padding: 12px;
@@ -116,6 +150,7 @@ li:not(.temp-li-element) {
         border: 1px solid black;
         padding: 10px;
         border-radius: 0.4em;
+        resize: none;
     }
 
     .bottom-reply-container {
@@ -133,4 +168,12 @@ li:not(.temp-li-element) {
             border-radius: 0.4em;
         }
     }
+}
+
+#reply-new {
+    margin-top: -20px;
+}
+
+.new-comment {
+    margin-top: -20px;
 }

@@ -1,6 +1,6 @@
 import { Comments } from "./Types"
 import {renderReplies} from "./RenderReplies"
-import {createReply} from "./CreateReply"
+import {createReplyToComment} from "./CreateReplyToComment"
 
 export const renderComments = (object: Array<Comments>) => {
     object.forEach(comment => {
@@ -9,7 +9,7 @@ export const renderComments = (object: Array<Comments>) => {
 
         //li element dynamically create
         const newCommentLi: HTMLLIElement = document.createElement("li")
-        newCommentLi.addEventListener("click", createReply)
+        newCommentLi.addEventListener("click", createReplyToComment)
 
         newCommentLi.innerHTML = `
             <div class="comment">
