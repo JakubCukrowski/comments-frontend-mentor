@@ -37,7 +37,7 @@ export const renderReplies = (
                     </div>
                 </div>
                 <div class="reply-wrapper">
-                    <div class="userinfo">
+                    <div class="userinfo longer">
                         <img src="${image}" alt="avatar"></img>
                             <span class="username">${name}</span>
                             <span class="comment-author-flag">you</span>
