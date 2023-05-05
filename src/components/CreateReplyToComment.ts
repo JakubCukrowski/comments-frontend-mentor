@@ -1,5 +1,6 @@
 import { loggedUser } from "./Comments"
 import { commentsToObject } from "../index"
+import {submitReply} from "./SubmitReply"
 
 export const createReplyToComment = (event: Event) => {
     //target reply button on reply window
@@ -21,6 +22,7 @@ export const createReplyToComment = (event: Event) => {
             tempUl.classList.add("temporary")
             const tempLi: HTMLLIElement = document.createElement("li")
             tempLi.classList.add("temp-li-element")
+            tempLi.addEventListener("click", submitReply)
 
             const newReplyCreator: HTMLDivElement = document.createElement("div")
             
@@ -46,5 +48,7 @@ export const createReplyToComment = (event: Event) => {
             
         
         } 
+
+        commentLiElement.removeEventListener("click", createReplyToComment)
     }
 }

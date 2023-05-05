@@ -1,5 +1,5 @@
 import { Comments } from "./Types"
-import {renderReplies} from "./RenderReplies"
+import {renderReplies} from "./RenderReply"
 import {createReplyToComment} from "./CreateReplyToComment"
 import { loggedUser } from "./Comments"
 

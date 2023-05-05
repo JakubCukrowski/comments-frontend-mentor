@@ -58,7 +58,7 @@ export const renderReplies = (
                         <button class="downvote">-</button>
                     </div>
                     <button class="reply-button">
-                        <img src="./images/icon-reply.svg"></img>
+                        <img class="reply-image" src="./images/icon-reply.svg"></img>
                         Reply
                     </button>
                 </div>
