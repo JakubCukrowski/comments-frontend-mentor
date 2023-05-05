@@ -1,12 +1,11 @@
 import { Comments } from "./Types"
-import {renderReplies} from "./RenderReply"
-import {createReplyToComment} from "./CreateReplyToComment"
+import {renderReply} from "./RenderReply"
+import {createReplyToComment} from "../functions/CreateReplyToComment"
 import { loggedUser } from "./Comments"
 
-export const renderComments = (object: Array<Comments>) => {
-    object.forEach(comment => {
+export const renderComment = (comment: Comments) => {
         //ul of class comments created in HTML
-        const commentsUl:HTMLUListElement = document.querySelector(".comments")
+        const commentsUl: HTMLUListElement = document.querySelector(".comments")
 
         //li element dynamically create
         const newCommentLi: HTMLLIElement = document.createElement("li")
@@ -75,6 +74,7 @@ export const renderComments = (object: Array<Comments>) => {
 
         if (comment.replies.length > 0) {
             const newRepliesUl: HTMLUListElement = document.createElement("ul")
+            newRepliesUl.classList.add("replies-container")
            
             //append new ul to comment's li
             newCommentLi.append(newRepliesUl)
@@ -82,21 +82,10 @@ export const renderComments = (object: Array<Comments>) => {
             comment.replies.forEach(reply => {
                                
                                 
-                const newReply: HTMLLIElement = renderReplies(
-                    reply.score,
-                    reply.user.image.png,
-                    reply.user.username,
-                    reply.createdAt,
-                    reply.content,
-                    reply.replyingTo,
-                    reply.id,
-                )
+                const newReply: HTMLLIElement = renderReply(reply)
 
                 newRepliesUl.append(newReply)
-                newRepliesUl.classList.add("replies-container")
             })
             
-        }
-                                                                
-    })   
+        }                                                        
 }

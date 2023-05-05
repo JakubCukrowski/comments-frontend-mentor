@@ -1,28 +1,20 @@
 import {loggedUser} from "./Comments"
-import { createReplyToReply } from "./CreateReplyToReply"
+import { createReplyToReply } from "../functions/CreateReplyToReply"
+import { Replies } from "./Types"
 
-export const renderReplies = (
-    score: number,
-    image: string,
-    name: string,
-    date: string,
-    content: string,
-    replyingTo: string,
-    id: number
-
-) => {
+export const renderReply = (reply: Replies) => {
 
     //li element dynamically create
     const newReplyLi: HTMLLIElement = document.createElement("li")
     newReplyLi.addEventListener("click", createReplyToReply)
     
-    if (name === loggedUser.username) {
+    if (reply.user.username === loggedUser.username) {
         newReplyLi.innerHTML = `
             <div class="reply">
                 <div class="buttons-container">
                     <div class="votes-container">
                         <button class="upvotes">+</button>
-                        <span>${score}</span>
+                        <span>${reply.score}</span>
                         <button class="downvote">-</button>
                     </div>
                     <div class="logged-user-buttons">
@@ -38,12 +30,12 @@ export const renderReplies = (
                 </div>
                 <div class="reply-wrapper">
                     <div class="userinfo longer">
-                        <img src="${image}" alt="avatar"></img>
-                            <span class="username">${name}</span>
+                        <img src="${reply.user.image.png}" alt="avatar"></img>
+                            <span class="username">${reply.user.username}</span>
                             <span class="comment-author-flag">you</span>
-                            <span class="date">${date}</span>
+                            <span class="date">${reply.createdAt}</span>
                     </div>
-                    <p><span class="replying-to">@${replyingTo}</span> ${content}</p>
+                    <p><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
                 </div>
             </div>
         `
@@ -54,7 +46,7 @@ export const renderReplies = (
                 <div class="buttons-container">
                     <div class="votes-container">
                         <button class="upvotes">+</button>
-                        <span>${score}</span>
+                        <span>${reply.score}</span>
                         <button class="downvote">-</button>
                     </div>
                     <button class="reply-button">
@@ -64,17 +56,17 @@ export const renderReplies = (
                 </div>
                 <div class="reply-wrapper">
                     <div class="userinfo">
-                        <img src="${image}" alt="avatar"></img>
-                        <span class="username">${name}</span>
-                        <span class="date">${date}</span>
+                        <img src="${reply.user.image.png}" alt="avatar"></img>
+                        <span class="username">${reply.user.username}</span>
+                        <span class="date">${reply.createdAt}</span>
                     </div>
-                    <p><span class="replying-to">@${replyingTo}</span> ${content}</p>
+                    <p><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
                 </div>
             </div>
         `
     }
 
-    newReplyLi.id = `reply-${id}`
+    newReplyLi.id = `reply-${reply.id}`
 
     return newReplyLi
 }

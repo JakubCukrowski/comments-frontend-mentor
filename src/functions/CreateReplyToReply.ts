@@ -1,8 +1,8 @@
-import { loggedUser } from "./Comments"
+import { loggedUser } from "../components/Comments"
 
 export const createReplyToReply = (e: Event) => {
     const replyLi = e.currentTarget as Element
-    const replyButton = e.target as Element
+    const replyButton = e.target as Element    
   
     if (replyButton.classList.contains("reply-button") || replyButton.classList.contains("reply-image")) {
         //catch replies container, parent element of event target to append the reply window to it

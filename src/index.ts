@@ -1,5 +1,5 @@
 import "./styles/main.scss"
-import {renderComments} from "./components/RenderComments"
+import {renderComment} from "./components/RenderComment"
 import {comments} from "./components/Comments"
 import { Comments } from "./components/Types"
 import {addNewComment} from "./components/AddNewComment"
@@ -11,6 +11,10 @@ if (localStorage.length === 0) {
 
 const getComments = localStorage.getItem("comments")
 export const commentsToObject: Array<Comments> = JSON.parse(getComments)
-renderComments(commentsToObject)
+
+commentsToObject.forEach(comment => {
+    renderComment(comment)
+})
+
 addNewComment()
 

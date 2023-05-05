@@ -1,6 +1,7 @@
 import { commentsToObject } from "../index"
 import {loggedUser} from "./Comments"
-import {renderSingleComment} from "./RenderSingleComment"
+import {renderComment} from "./RenderComment"
+import { Comments } from "./Types"
 
 export const addNewComment = () => {
     //catch container element
@@ -19,7 +20,8 @@ export const addNewComment = () => {
         `
         const submitBtn: HTMLButtonElement = newDivElement.querySelector(".submit-reply-btn")
         submitBtn.addEventListener("click", () => {
-            commentsToObject.push({
+            
+            const newComment: Comments = {
                 id: commentsToObject.length + 1,
                 content: (newDivElement.querySelector(".textarea") as HTMLTextAreaElement).value,
                 createdAt: "2 minutes ago",
@@ -32,11 +34,13 @@ export const addNewComment = () => {
                     username: loggedUser.username
                 },
                 replies: []
-            })
+            }
+
+            commentsToObject.push(newComment)
             
             const convertCommentsToJSON: string = JSON.stringify(commentsToObject)
             localStorage.setItem('comments', convertCommentsToJSON)
-            renderSingleComment(newDivElement, (newDivElement.querySelector(".textarea") as HTMLTextAreaElement))
+            renderComment(newComment)
 
         })
     

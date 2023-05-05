@@ -1,8 +1,8 @@
 import { commentsToObject } from "../index"
-import { loggedUser } from "./Comments"
+import { loggedUser } from "../components/Comments"
 import { createReplyToComment } from "./CreateReplyToComment"
-import { renderReplies } from "./RenderReply"
-import { Comments } from "./Types"
+import { renderReply } from "../components/RenderReply"
+import { Comments, Replies } from "../components/Types"
 
 export const submitReply = (e: Event) => {
     //submit button
@@ -26,9 +26,9 @@ export const submitReply = (e: Event) => {
 
     if (submitReplyButton.classList.contains("submit-reply-btn")) {
                
-            commentToReply[0].replies.push({
-                id: newReplyId,
-                content: textarea.value,
+        const newReply: Replies = {
+            id: newReplyId,
+                content: textarea.value.split(" ").slice(1).join(" "),
                 createdAt: "1 week ago",
                 score: 0,
                 replyingTo: commentToReply[0].user.username,
@@ -39,18 +39,10 @@ export const submitReply = (e: Event) => {
                     },
                     username: loggedUser.username
                 },
-            })
+        }
+            commentToReply[0].replies.push(newReply)
 
-        const newReplyLi: HTMLLIElement = renderReplies(
-            0,
-            loggedUser.image.png,
-            loggedUser.username,
-            "1 week ago",
-            textarea.value,
-            commentToReply[0].user.username,
-            newReplyId,           
-            
-        )
+        const newReplyLi: HTMLLIElement = renderReply(newReply)
 
         if (commentLi.querySelector(".replies-container") === null) {
             const newRepliesContainer: HTMLUListElement = document.createElement("ul")
