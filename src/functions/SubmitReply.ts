@@ -24,9 +24,10 @@ export const submitReply = (e: Event) => {
 
     const commentToReply: Array<Comments> = commentsToObject.filter(comment => commentLi.id === `comment-${comment.id}`)
 
+    let newReply: Replies
     if (submitReplyButton.classList.contains("submit-reply-btn")) { 
         if (tempLi.closest("li").previousElementSibling === null) {
-            const newReply: Replies = {
+            newReply = {
                 id: newReplyId,
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
@@ -38,40 +39,16 @@ export const submitReply = (e: Event) => {
                         webp: loggedUser.image.webp
                         },
                         username: loggedUser.username
-                    },
+                },
+                    
             }
             
-            commentToReply[0].replies.push(newReply)
-    
-            const newReplyLi: HTMLLIElement = renderReply(newReply)
-    
-            if (commentLi.querySelector(".replies-container") === null) {
-                const newRepliesContainer: HTMLUListElement = document.createElement("ul")
-                newRepliesContainer.classList.add("replies-container")
-                newRepliesContainer.append(newReplyLi)
-                commentLi.append(newRepliesContainer)
-                
-            }   else {
-                const existingRepliesContainer: HTMLDivElement = commentLi.querySelector(".replies-container")
-                existingRepliesContainer.append(newReplyLi)          
-            }
-            
-            const commentsToJSON: string = JSON.stringify(commentsToObject)
-            localStorage.setItem("comments", commentsToJSON)
-    
-            if (!tempLi.parentElement.classList.contains("replies-container")) {
-                tempLi.parentElement.remove()
-    
-            } else {
-                tempLi.remove()
-            }
-
         } else {
-            const searchedReply = commentToReply[0].replies.filter(reply => {
+            const searchedReply: Array<Replies> = commentToReply[0].replies.filter(reply => {
                 return tempLi.closest("li").previousElementSibling.id === `reply-${reply.id}`
             })
 
-            const newReply: Replies = {
+            newReply = {
                 id: newReplyId,
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
@@ -83,35 +60,35 @@ export const submitReply = (e: Event) => {
                         webp: loggedUser.image.webp
                         },
                         username: loggedUser.username
-                    },
-            }
-            
-            commentToReply[0].replies.push(newReply)
-    
-            const newReplyLi: HTMLLIElement = renderReply(newReply)
-    
-            if (commentLi.querySelector(".replies-container") === null) {
-                const newRepliesContainer: HTMLUListElement = document.createElement("ul")
-                newRepliesContainer.classList.add("replies-container")
-                newRepliesContainer.append(newReplyLi)
-                commentLi.append(newRepliesContainer)
-                
-            }   else {
-                const existingRepliesContainer: HTMLDivElement = commentLi.querySelector(".replies-container")
-                existingRepliesContainer.append(newReplyLi)          
-            }
-            
-            const commentsToJSON: string = JSON.stringify(commentsToObject)
-            localStorage.setItem("comments", commentsToJSON)
-    
-            if (!tempLi.parentElement.classList.contains("replies-container")) {
-                tempLi.parentElement.remove()
-    
-            } else {
-                tempLi.remove()
+                },
+                    
             }
         }
+
+            commentToReply[0].replies.push(newReply)
+
+        const newReplyLi: HTMLLIElement = renderReply(newReply)
+
+        if (commentLi.querySelector(".replies-container") === null) {
+            const newRepliesContainer: HTMLUListElement = document.createElement("ul")
+            newRepliesContainer.classList.add("replies-container")
+            newRepliesContainer.append(newReplyLi)
+            commentLi.append(newRepliesContainer)
+            
+        }   else {
+            const existingRepliesContainer: HTMLDivElement = commentLi.querySelector(".replies-container")
+            existingRepliesContainer.append(newReplyLi)          
+        }
         
+        const commentsToJSON: string = JSON.stringify(commentsToObject)
+        localStorage.setItem("comments", commentsToJSON)
+
+        if (!tempLi.parentElement.classList.contains("replies-container")) {
+            tempLi.parentElement.remove()
+
+        } else {
+            tempLi.remove()
+        }
     }
 
     commentLi.addEventListener("click", createReplyToComment)
