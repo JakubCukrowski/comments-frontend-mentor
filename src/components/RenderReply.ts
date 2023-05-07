@@ -1,6 +1,7 @@
 import {loggedUser} from "./Comments"
 import { createReplyToReply } from "../functions/CreateReplyToReply"
 import { Replies } from "./Types"
+import {editComment} from "../functions/EditComment"
 
 export const renderReply = (reply: Replies) => {
 
@@ -19,11 +20,11 @@ export const renderReply = (reply: Replies) => {
                     </div>
                     <div class="logged-user-buttons">
                         <button class="delete-btn">
-                            <img src="./images/icon-delete.svg" att="bin">
+                            <img class="delete-img" src="./images/icon-delete.svg" att="bin">
                             Delete
                         </button>
                             <button class="edit-btn">
-                            <img src="./images/icon-edit.svg" att="bin">
+                            <img class="edit-img" src="./images/icon-edit.svg" att="bin">
                         Edit
                         </button>
                     </div>
@@ -35,7 +36,7 @@ export const renderReply = (reply: Replies) => {
                             <span class="comment-author-flag">you</span>
                             <span class="date">${reply.createdAt}</span>
                     </div>
-                    <p><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
+                    <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
                 </div>
             </div>
         `
@@ -60,13 +61,14 @@ export const renderReply = (reply: Replies) => {
                         <span class="username">${reply.user.username}</span>
                         <span class="date">${reply.createdAt}</span>
                     </div>
-                    <p><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
+                    <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
                 </div>
             </div>
         `
     }
 
     newReplyLi.id = `reply-${reply.id}`
+    newReplyLi.addEventListener("click", editComment)
 
     return newReplyLi
 }

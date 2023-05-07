@@ -19,11 +19,12 @@ export const addNewComment = () => {
         </div>
         `
         const submitBtn: HTMLButtonElement = newDivElement.querySelector(".submit-reply-btn")
+        const textarea: HTMLTextAreaElement = newDivElement.querySelector(".textarea") as HTMLTextAreaElement
         submitBtn.addEventListener("click", () => {
             
             const newComment: Comments = {
                 id: commentsToObject.length + 1,
-                content: (newDivElement.querySelector(".textarea") as HTMLTextAreaElement).value,
+                content: textarea.value,
                 createdAt: "2 minutes ago",
                 score: 0,
                 user: {
@@ -34,15 +35,17 @@ export const addNewComment = () => {
                     username: loggedUser.username
                 },
                 replies: []
-            }
+            }            
 
             commentsToObject.push(newComment)
             
             const convertCommentsToJSON: string = JSON.stringify(commentsToObject)
             localStorage.setItem('comments', convertCommentsToJSON)
             renderComment(newComment)
+            textarea.value = ""
 
         })
     
     containerElement.append(newDivElement)
+    
 }

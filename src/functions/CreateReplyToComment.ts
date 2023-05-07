@@ -28,7 +28,7 @@ export const createReplyToComment = (event: Event) => {
             
             newReplyCreator.classList.add("new-reply-window")
             newReplyCreator.innerHTML = `
-                <textarea class="textarea" maxlength="120">@${filterComments[0].user.username}</textarea>
+                <textarea class="textarea" maxlength="120">@${filterComments[0].user.username}, </textarea>
                 <div class ="bottom-reply-container">
                     <img src="${loggedUser.image.png}" alt="avatar"></img>
                     <button class="submit-reply-btn">REPLY</button>

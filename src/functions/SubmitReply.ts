@@ -25,6 +25,7 @@ export const submitReply = (e: Event) => {
     const commentToReply: Array<Comments> = commentsToObject.filter(comment => commentLi.id === `comment-${comment.id}`)
 
     let newReply: Replies
+
     if (submitReplyButton.classList.contains("submit-reply-btn")) { 
         if (tempLi.closest("li").previousElementSibling === null) {
             newReply = {
@@ -65,7 +66,7 @@ export const submitReply = (e: Event) => {
             }
         }
 
-            commentToReply[0].replies.push(newReply)
+        commentToReply[0].replies.push(newReply)
 
         const newReplyLi: HTMLLIElement = renderReply(newReply)
 
@@ -91,6 +92,6 @@ export const submitReply = (e: Event) => {
         }
     }
 
-    commentLi.addEventListener("click", createReplyToComment)
+    commentLi.addEventListener("click", createReplyToComment)   
     
 }

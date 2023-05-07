@@ -38,7 +38,7 @@ export const renderComment = (comment: Comments) => {
                             <span class="comment-author-flag">you</span>
                             <span class="date">${comment.createdAt}</span>
                         </div>
-                        <p>${comment.content}</p>
+                        <p class="content">${comment.content}</p>
                     </div>
                 </div>
             `
@@ -62,7 +62,7 @@ export const renderComment = (comment: Comments) => {
                             <span class="username">${comment.user.username}</span>
                             <span class="date">${comment.createdAt}</span>
                         </div>
-                        <p>${comment.content}</p>
+                        <p class="content">${comment.content}</p>
                     </div>
                 </div>
             `
