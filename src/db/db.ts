@@ -1,4 +1,4 @@
-import { LoggedUser, Comments } from "./Types"
+import { LoggedUser, Comments } from "../components/Types"
 
 export const loggedUser: LoggedUser = {
     image: { 

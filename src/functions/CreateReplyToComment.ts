@@ -1,4 +1,4 @@
-import { loggedUser } from "../components/Comments"
+import { loggedUser } from "../db/db"
 import { commentsToObject } from "../index"
 import {submitReply} from "./SubmitReply"
 

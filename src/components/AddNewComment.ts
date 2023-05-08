@@ -1,5 +1,5 @@
 import { commentsToObject } from "../index"
-import {loggedUser} from "./Comments"
+import {loggedUser} from "../db/db"
 import {renderComment} from "./RenderComment"
 import { Comments } from "./Types"
 
@@ -18,34 +18,32 @@ export const addNewComment = () => {
             <button class="submit-reply-btn">SEND</button>
         </div>
         `
-        const submitBtn: HTMLButtonElement = newDivElement.querySelector(".submit-reply-btn")
-        const textarea: HTMLTextAreaElement = newDivElement.querySelector(".textarea") as HTMLTextAreaElement
-        submitBtn.addEventListener("click", () => {
-            
-            const newComment: Comments = {
-                id: commentsToObject.length + 1,
-                content: textarea.value,
-                createdAt: "2 minutes ago",
-                score: 0,
-                user: {
-                    image: { 
-                    png: loggedUser.image.png,
-                    webp: loggedUser.image.webp,
-                    },
-                    username: loggedUser.username
+    const submitBtn: HTMLButtonElement = newDivElement.querySelector(".submit-reply-btn")
+    const textarea: HTMLTextAreaElement = newDivElement.querySelector(".textarea") as HTMLTextAreaElement
+    submitBtn.addEventListener("click", () => {
+        
+        const newComment: Comments = {
+            id: commentsToObject.length + 1,
+            content: textarea.value,
+            createdAt: "2 minutes ago",
+            score: 0,
+            user: {
+                image: { 
+                png: loggedUser.image.png,
+                webp: loggedUser.image.webp,
                 },
-                replies: []
-            }            
+                username: loggedUser.username
+            },
+            replies: []
+        }            
 
-            commentsToObject.push(newComment)
-            
-            const convertCommentsToJSON: string = JSON.stringify(commentsToObject)
-            localStorage.setItem('comments', convertCommentsToJSON)
-            renderComment(newComment)
-            textarea.value = ""
+        commentsToObject.push(newComment)
+        
+        const convertCommentsToJSON: string = JSON.stringify(commentsToObject)
+        localStorage.setItem('comments', convertCommentsToJSON)
+        renderComment(newComment)
+        textarea.value = ""
 
-        })
-    
+    })
     containerElement.append(newDivElement)
-    
 }

@@ -1,6 +1,6 @@
 import "./styles/main.scss"
 import {renderComment} from "./components/RenderComment"
-import {comments} from "./components/Comments"
+import {comments} from "./db/db"
 import { Comments } from "./components/Types"
 import {addNewComment} from "./components/AddNewComment"
 

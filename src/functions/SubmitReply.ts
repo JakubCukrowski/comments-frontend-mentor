@@ -1,5 +1,5 @@
 import { commentsToObject } from "../index"
-import { loggedUser } from "../components/Comments"
+import { loggedUser } from "../db/db"
 import { createReplyToComment } from "./CreateReplyToComment"
 import { renderReply } from "../components/RenderReply"
 import { Comments, Replies } from "../components/Types"
