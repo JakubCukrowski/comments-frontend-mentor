@@ -3,6 +3,7 @@ import { loggedUser } from "../db/db"
 import { createReplyToComment } from "./CreateReplyToComment"
 import { renderReply } from "../components/RenderReply"
 import { Comments, Replies } from "../components/Types"
+import { createReplyToReply } from "./CreateReplyToReply"
 
 export const submitReply = (e: Event) => {
     //submit button
@@ -19,14 +20,16 @@ export const submitReply = (e: Event) => {
 
     //new reply id
     const commentsCount = commentsToObject.length
-    const repliesCount = commentsToObject.map(comment => comment.replies)
-    const newReplyId = commentsCount + repliesCount.length + 1    
+    const repliesCount = commentsToObject.map(comment => comment.replies).flat()
+    let newReplyId = commentsCount + repliesCount.length + 1  
+    
 
     const commentToReply: Array<Comments> = commentsToObject.filter(comment => commentLi.id === `comment-${comment.id}`)
 
     let newReply: Replies
 
     if (submitReplyButton.classList.contains("submit-reply-btn")) { 
+            
         if (tempLi.closest("li").previousElementSibling === null) {
             newReply = {
                 id: newReplyId,
@@ -64,6 +67,8 @@ export const submitReply = (e: Event) => {
                 },
                     
             }
+
+            tempLi.closest("li").previousElementSibling.addEventListener("click", createReplyToReply)
         }
 
         commentToReply[0].replies.push(newReply)

@@ -23,7 +23,7 @@ export const addNewComment = () => {
     submitBtn.addEventListener("click", () => {
         
         const newComment: Comments = {
-            id: commentsToObject.length + 1,
+            id: commentsToObject.length + commentsToObject.map(comment => comment.replies).flat().length + 1,
             content: textarea.value,
             createdAt: "2 minutes ago",
             score: 0,

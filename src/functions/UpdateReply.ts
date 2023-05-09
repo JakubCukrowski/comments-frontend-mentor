@@ -1,5 +1,5 @@
 import { commentsToObject } from "../index"
-import { Comments } from "../components/Types"
+import { Comments, Replies } from "../components/Types"
 
 export const updateReply = (e: Event) => {
     const updateBtn = e.target as HTMLButtonElement
@@ -8,21 +8,25 @@ export const updateReply = (e: Event) => {
 
     const textarea = liElement.querySelector(".textarea") as HTMLTextAreaElement
     
-    const commentWithReply: Array<Comments> = commentsToObject.filter(comment => commentLiElement.id === `comment-${comment.id}`)
-    const searchedReply = commentWithReply[0].replies.filter(reply => liElement.id === `reply-${reply.id}`)
+    const commentWithReply: Comments | undefined = commentsToObject.find(comment => commentLiElement.id === `comment-${comment.id}`)
+    const searchedReply: Replies = commentWithReply.replies.find(reply => liElement.id === `reply-${reply.id}`)
 
-    searchedReply[0].content = textarea.value.split(" ").slice(1).join(" ")
+    if (textarea.value.split(" ")[0].startsWith("@")) {
+        searchedReply.content = textarea.value.split(" ").slice(1).join(" ")
+    } else {
+        searchedReply.content = textarea.value
+    }
 
     const commentsToJSON: string = JSON.stringify(commentsToObject)
     localStorage.setItem("comments", commentsToJSON)
 
     const newP: HTMLParagraphElement = document.createElement("p")
     newP.classList.add("content")
-    newP.innerText = textarea.value.split(" ").slice(1).join(" ")
+    newP.innerText = textarea.value.split(" ")[0].startsWith("@") ? textarea.value.split(" ").slice(1).join(" ") : textarea.value
 
     const newSpan: HTMLSpanElement = document.createElement("span")
     newSpan.classList.add("replying-to")
-    newSpan.innerText = `@${searchedReply[0].replyingTo + " "}`
+    newSpan.innerText = `@${searchedReply.replyingTo + " "}`
     
     newP.prepend(newSpan)
 
