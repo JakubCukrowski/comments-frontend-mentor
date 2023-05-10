@@ -3,6 +3,7 @@ import {renderReply} from "./RenderReply"
 import {createReplyToComment} from "../functions/CreateReplyToComment"
 import { loggedUser } from "../db/db"
 import { editComment } from "../functions/EditComment"
+import { deletePost } from "../functions/DeletePost"
 
 export const renderComment = (comment: Comments) => {
     //ul of class comments created in HTML
@@ -74,5 +75,8 @@ export const renderComment = (comment: Comments) => {
     
     const editBtn: HTMLButtonElement = newCommentLi.querySelector(".edit-comment-btn")
     editBtn?.addEventListener("click", editComment)
+    
+    const deleteBtn: HTMLButtonElement = newCommentLi.querySelector(".delete-btn")
+    deleteBtn?.addEventListener("click", deletePost)
     
 }

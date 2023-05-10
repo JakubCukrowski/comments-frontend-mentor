@@ -2,6 +2,7 @@ import {loggedUser} from "../db/db"
 import { createReplyToReply } from "../functions/CreateReplyToReply"
 import { Replies } from "./Types"
 import { editReply } from "../functions/EditReply"
+import { deletePost } from "../functions/DeletePost"
 
 export const renderReply = (reply: Replies) => {
 
@@ -48,6 +49,10 @@ export const renderReply = (reply: Replies) => {
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)
+
+    const deleteBtn: HTMLButtonElement = newReplyLi.querySelector(".delete-btn")
+    deleteBtn?.addEventListener("click", deletePost)
+    
 
     return newReplyLi
 }
