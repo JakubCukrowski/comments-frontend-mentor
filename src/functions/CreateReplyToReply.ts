@@ -22,8 +22,6 @@ export const createReplyToReply = (e: Event) => {
         newReplyLi.id = "reply-new"
         newReplyLi.addEventListener("click", submitReply)
         
-        const username = replyLi.querySelector(".username") as HTMLSpanElement
-        
         const newReplyCreator: HTMLDivElement = document.createElement("div")
                 
         newReplyCreator.classList.add("new-reply-window")

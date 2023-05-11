@@ -2,6 +2,7 @@ import { commentsToObject } from "../index"
 import {loggedUser} from "../db/db"
 import {renderComment} from "./RenderComment"
 import { Comments } from "./Types"
+import { updateLocalStorage } from "../functions/UpdateLocalStorage"
 
 export const addNewComment = () => {
     //catch container element
@@ -39,8 +40,7 @@ export const addNewComment = () => {
 
         commentsToObject.push(newComment)
         
-        const convertCommentsToJSON: string = JSON.stringify(commentsToObject)
-        localStorage.setItem('comments', convertCommentsToJSON)
+        updateLocalStorage("comments", commentsToObject)
         renderComment(newComment)
         textarea.value = ""
 

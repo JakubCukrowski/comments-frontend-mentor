@@ -9,7 +9,7 @@ export const updateComment = (e: Event) => {
     
     const textarea = liElement.querySelector(".textarea") as HTMLTextAreaElement
     
-    const commentToUpdate: Comments | undefined = commentsToObject.find(comment =>  `comment-${comment.id}` === liElement.id)
+    const commentToUpdate: Comments = commentsToObject.find(comment =>  `comment-${comment.id}` === liElement.id)
 
     const newP: HTMLParagraphElement = document.createElement("p")
     newP.classList.add("content")

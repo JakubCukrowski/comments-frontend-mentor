@@ -1,5 +1,6 @@
 import { commentsToObject } from "../index"
 import { Comments, Replies } from "../components/Types"
+import { updateLocalStorage } from "./UpdateLocalStorage"
 
 export const updateReply = (e: Event) => {
     const updateBtn = e.target as HTMLButtonElement
@@ -17,8 +18,7 @@ export const updateReply = (e: Event) => {
         searchedReply.content = textarea.value
     }
 
-    const commentsToJSON: string = JSON.stringify(commentsToObject)
-    localStorage.setItem("comments", commentsToJSON)
+    updateLocalStorage("comments", commentsToObject)
 
     const newP: HTMLParagraphElement = document.createElement("p")
     newP.classList.add("content")

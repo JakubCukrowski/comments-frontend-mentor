@@ -1,5 +1,6 @@
 import { Comments, Replies } from "../components/Types"
 import { commentsToObject } from "../index"
+import { updateLocalStorage } from "./UpdateLocalStorage"
 
 export const deletePost = (e: Event) => {
     const btn = e.target as Element    
@@ -60,8 +61,7 @@ export const deletePost = (e: Event) => {
                 selectedCommentFromLocalStorage.replies.push(reply)
             })
 
-            const commentsToString: string = JSON.stringify(commentsToObject)
-            localStorage.setItem("comments", commentsToString)
+            updateLocalStorage("comments", commentsToObject)
         })
 
 
@@ -77,8 +77,7 @@ export const deletePost = (e: Event) => {
             const allCommentsWithoutSelected: Array<Comments> = commentsToObject
             .filter(comment => selectedComment.id !== comment.id)            
 
-            const commentsToJson: string = JSON.stringify(allCommentsWithoutSelected)
-            localStorage.setItem("comments", commentsToJson)
+            updateLocalStorage("comments", allCommentsWithoutSelected)
 
             const deletedCommentIndex = commentsToObject.findIndex(comment => selectedComment.id === comment.id)
             commentsToObject.splice(deletedCommentIndex, 1)

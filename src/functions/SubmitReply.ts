@@ -4,6 +4,7 @@ import { createReplyToComment } from "./CreateReplyToComment"
 import { renderReply } from "../components/RenderReply"
 import { Comments, Replies } from "../components/Types"
 import { createReplyToReply } from "./CreateReplyToReply"
+import { updateLocalStorage } from "./UpdateLocalStorage"
 
 export const submitReply = (e: Event) => {
     //submit button
@@ -24,7 +25,7 @@ export const submitReply = (e: Event) => {
     let newReplyId = commentsCount + repliesCount.length + 1  
     
 
-    const commentToReply: Array<Comments> = commentsToObject.filter(comment => commentLi.id === `comment-${comment.id}`)
+    const commentToReply: Comments = commentsToObject.find(comment => commentLi.id === `comment-${comment.id}`)
 
     let newReply: Replies
 
@@ -36,7 +37,7 @@ export const submitReply = (e: Event) => {
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
                     score: 0,
-                    replyingTo: commentToReply[0].user.username,
+                    replyingTo: commentToReply.user.username,
                     user: {
                         image: { 
                         png: loggedUser.image.png,
@@ -48,7 +49,7 @@ export const submitReply = (e: Event) => {
             }
             
         } else {
-            const searchedReply: Array<Replies> = commentToReply[0].replies.filter(reply => {
+            const searchedReply: Replies = commentToReply.replies.find(reply => {
                 return tempLi.closest("li").previousElementSibling.id === `reply-${reply.id}`
             })
 
@@ -57,7 +58,7 @@ export const submitReply = (e: Event) => {
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
                     score: 0,
-                    replyingTo: searchedReply[0].user.username,
+                    replyingTo: searchedReply.user.username,
                     user: {
                         image: { 
                         png: loggedUser.image.png,
@@ -71,7 +72,7 @@ export const submitReply = (e: Event) => {
             tempLi.closest("li").previousElementSibling.addEventListener("click", createReplyToReply)
         }
 
-        commentToReply[0].replies.push(newReply)
+        commentToReply.replies.push(newReply)
 
         const newReplyLi: HTMLLIElement = renderReply(newReply)
 
@@ -86,8 +87,7 @@ export const submitReply = (e: Event) => {
             existingRepliesContainer.append(newReplyLi)          
         }
         
-        const commentsToJSON: string = JSON.stringify(commentsToObject)
-        localStorage.setItem("comments", commentsToJSON)
+        updateLocalStorage("comments", commentsToObject)
 
         if (!tempLi.parentElement.classList.contains("replies-container")) {
             tempLi.parentElement.remove()
