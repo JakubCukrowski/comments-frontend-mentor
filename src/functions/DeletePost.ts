@@ -59,29 +59,31 @@ export const deletePost = (e: Event) => {
             repliesWithoutSelected.forEach(reply => {
                 selectedCommentFromLocalStorage.replies.push(reply)
             })
+
+            const commentsToString: string = JSON.stringify(commentsToObject)
+            localStorage.setItem("comments", commentsToString)
         })
 
-        const commentsToString: string = JSON.stringify(commentsToObject)
-    localStorage.setItem("comments", commentsToString)
 
     } else {
         const commentLi: HTMLLIElement = btn.closest("li")
-        const selectedComment: Comments = commentsToObject.find(comment => commentLi.id === `comment-${comment.id}`)
-        
-        
-
+        const selectedComment: Comments = commentsToObject.find(comment => commentLi.id === `comment-${comment.id}`)         
+              
         deleteBtn.addEventListener("click", () => {
             commentLi.remove()
             popup.remove()
             document.body.classList.remove("disabled")
 
-            const allCommentsWithoutSelected: Array<Comments> = commentsToObject.filter(comment => comment.id !== selectedComment.id)
+            const allCommentsWithoutSelected: Array<Comments> = commentsToObject
+            .filter(comment => selectedComment.id !== comment.id)            
 
             const commentsToJson: string = JSON.stringify(allCommentsWithoutSelected)
             localStorage.setItem("comments", commentsToJson)
 
+            const deletedCommentIndex = commentsToObject.findIndex(comment => selectedComment.id === comment.id)
+            commentsToObject.splice(deletedCommentIndex, 1)
+            
         })
-        
     }
 
 }
