@@ -37,7 +37,7 @@ export const renderReply = (reply: Replies) => {
                 </button>`}
             </div>
             <div class="reply-wrapper">
-                <div class="userinfo longer">
+                <div class="userinfo ${reply.user.username === loggedUser.username ? "longer" : ""}">
                     <img src="${reply.user.image.png}" alt="avatar"></img>
                         <span class="username">${reply.user.username}</span>
                         ${reply.user.username === loggedUser.username ? 
