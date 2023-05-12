@@ -3,6 +3,8 @@ import { createReplyToReply } from "../functions/CreateReplyToReply"
 import { Replies } from "./Types"
 import { editReply } from "../functions/EditReply"
 import { deletePost } from "../functions/DeletePost"
+import { upvote } from "../functions/upvote"
+import { downvote } from "../functions/downvote"
 
 export const renderReply = (reply: Replies) => {
 
@@ -15,8 +17,8 @@ export const renderReply = (reply: Replies) => {
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
-                    <span>${reply.score}</span>
-                    <button class="downvote">-</button>
+                    <span class="score">${reply.score}</span>
+                    <button class="downvotes">-</button>
                 </div>
                 ${reply.user.username === loggedUser.username ?
                 `<div class="logged-user-buttons">
@@ -52,6 +54,12 @@ export const renderReply = (reply: Replies) => {
 
     const deleteBtn: HTMLButtonElement = newReplyLi.querySelector(".delete-btn")
     deleteBtn?.addEventListener("click", deletePost)
+
+    const upvoteBtn: HTMLButtonElement = newReplyLi.querySelector(".upvotes")
+    upvoteBtn.addEventListener("click", upvote)
+
+    const downvoteBtn: HTMLButtonElement = newReplyLi.querySelector(".downvotes")
+    downvoteBtn.addEventListener("click", downvote)
     
 
     return newReplyLi

@@ -37,6 +37,7 @@ export const submitReply = (e: Event) => {
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
                     score: 0,
+                    voted: false,
                     replyingTo: commentToReply.user.username,
                     user: {
                         image: { 
@@ -58,6 +59,7 @@ export const submitReply = (e: Event) => {
                     content: textarea.value.split(" ").slice(1).join(" "),
                     createdAt: "1 week ago",
                     score: 0,
+                    voted: false,
                     replyingTo: searchedReply.user.username,
                     user: {
                         image: { 

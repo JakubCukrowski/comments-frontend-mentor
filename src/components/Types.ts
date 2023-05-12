@@ -11,6 +11,7 @@ export interface Replies {
     content: string;
     createdAt: string;
     score: number;
+    voted: boolean;
     replyingTo: string;
     user: {
         image: {
@@ -27,7 +28,7 @@ export interface Comments {
     content: string
     createdAt: string
     score: number
-
+    voted: boolean
     user: {
         image: {
             png: string

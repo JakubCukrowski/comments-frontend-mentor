@@ -4,6 +4,8 @@ import {createReplyToComment} from "../functions/CreateReplyToComment"
 import { loggedUser } from "../db/db"
 import { editComment } from "../functions/EditComment"
 import { deletePost } from "../functions/DeletePost"
+import { upvote } from "../functions/upvote"
+import { downvote } from "../functions/downvote"
 
 export const renderComment = (comment: Comments) => {
     //ul of class comments created in HTML
@@ -19,8 +21,8 @@ export const renderComment = (comment: Comments) => {
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
-                    <span>${comment.score}</span>
-                    <button class="downvote">-</button>
+                    <span class="score">${comment.score}</span>
+                    <button class="downvotes">-</button>
                 </div>
                 ${comment.user.username === loggedUser.username 
                 ?
@@ -78,5 +80,11 @@ export const renderComment = (comment: Comments) => {
     
     const deleteBtn: HTMLButtonElement = newCommentLi.querySelector(".delete-btn")
     deleteBtn?.addEventListener("click", deletePost)
+
+    const upvoteBtn: HTMLButtonElement = newCommentLi.querySelector(".upvotes")
+    upvoteBtn.addEventListener("click", upvote)
+
+    const downvoteBtn: HTMLButtonElement = newCommentLi.querySelector(".downvotes")
+    downvoteBtn?.addEventListener("click", downvote)
     
 }

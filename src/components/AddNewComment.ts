@@ -28,6 +28,7 @@ export const addNewComment = () => {
             content: textarea.value,
             createdAt: "2 minutes ago",
             score: 0,
+            voted: false,
             user: {
                 image: { 
                 png: loggedUser.image.png,
