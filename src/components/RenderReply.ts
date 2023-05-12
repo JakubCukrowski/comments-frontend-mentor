@@ -14,6 +14,16 @@ export const renderReply = (reply: Replies) => {
     
     newReplyLi.innerHTML = `
         <div class="reply">
+            <div class="reply-wrapper">
+                <div class="userinfo">
+                    <img src="${reply.user.image.png}" alt="avatar"></img>
+                        <span class="username">${reply.user.username}</span>
+                        ${reply.user.username === loggedUser.username ? 
+                        `<span class="comment-author-flag">you</span>` : ""}
+                        <span class="date">${reply.createdAt}</span>
+                </div>
+            </div>
+            <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
@@ -35,16 +45,6 @@ export const renderReply = (reply: Replies) => {
                     <img class="reply-image" src="./images/icon-reply.svg"></img>
                     Reply
                 </button>`}
-            </div>
-            <div class="reply-wrapper">
-                <div class="userinfo ${reply.user.username === loggedUser.username ? "longer" : ""}">
-                    <img src="${reply.user.image.png}" alt="avatar"></img>
-                        <span class="username">${reply.user.username}</span>
-                        ${reply.user.username === loggedUser.username ? 
-                        `<span class="comment-author-flag">you</span>` : ""}
-                        <span class="date">${reply.createdAt}</span>
-                </div>
-                <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
             </div>
         </div>
     `

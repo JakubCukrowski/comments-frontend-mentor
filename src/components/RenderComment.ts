@@ -18,6 +18,38 @@ export const renderComment = (comment: Comments) => {
     
     newCommentLi.innerHTML = `
         <div class="comment">
+            <div class="comment-wrapper">
+                <div class="userinfo">
+                    <div class="user-data">
+                        <img src="${comment.user.image.png}" alt="avatar"></img>
+                        <span class="username">${comment.user.username}</span>
+                        ${comment.user.username === loggedUser.username 
+                            ? `<span class="comment-author-flag">you</span>` : ""}
+                        <span class="date">${comment.createdAt}</span>
+                    </div>
+                    <div class="desktop-buttons">
+                    ${comment.user.username === loggedUser.username 
+                        ?
+                        `<div class="logged-user-buttons">
+                            <button class="delete-btn">
+                                <img src="./images/icon-delete.svg" att="bin">
+                                Delete
+                            </button>
+                            <button class="edit-comment-btn">
+                                <img src="./images/icon-edit.svg" att="bin">
+                                Edit
+                            </button>
+                        </div>` 
+                        :
+                        `<button class="reply-button">
+                            <img class="reply-image" src="./images/icon-reply.svg"></img>
+                            Reply
+                        </button>`
+                        }
+                    </div>
+                </div>
+            </div>
+            <p class="content">${comment.content}</p>
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
@@ -42,16 +74,6 @@ export const renderComment = (comment: Comments) => {
                     Reply
                 </button>`
                 }
-            </div>
-            <div class="comment-wrapper">
-                <div class="userinfo longer">
-                    <img src="${comment.user.image.png}" alt="avatar"></img>
-                    <span class="username">${comment.user.username}</span>
-                    ${comment.user.username === loggedUser.username 
-                        ? `<span class="comment-author-flag">you</span>` : ""}
-                    <span class="date">${comment.createdAt}</span>
-                </div>
-                <p class="content">${comment.content}</p>
             </div>
         </div>
     `

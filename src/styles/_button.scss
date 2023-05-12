@@ -8,6 +8,10 @@ button {
     align-items: center;
     margin-top: 1.5em;
 
+    @media screen and (min-width: 800px) {
+        display: none;
+    }
+
     .logged-user-buttons {
         display: flex;
         gap: 10px;
@@ -55,21 +59,20 @@ button {
             color: $moderate_blue;
         }
     }
+}
 
+.reply-button {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 0.4em;
+    color: $moderate_blue;
+    font-weight: 500;
 
-    .reply-button {
-        background-color: transparent;
-        border: none;
-        display: flex;
-        align-items: center;
-        gap: 0.4em;
-        color: $moderate_blue;
-        font-weight: 500;
-
-        img {
-            width: 12px;
-            height: 12px;
-        }
+    img {
+        width: 12px !important;
+        height: 12px !important;
     }
 }
 

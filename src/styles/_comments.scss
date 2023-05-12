@@ -18,17 +18,30 @@ li:not(.temp-li-element) {
         padding: 12px;
         background-color: $white;
         display: flex;
-        flex-direction: column-reverse;
+        flex-direction: column;
+
+        @media screen and (min-width: 800px) {
+            padding: 16px 20px;
+        }
 
         .userinfo {
-            width: 250px;
             margin-bottom: 1em;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between;
 
-            &.longer {
-                width: 95%;
+            .user-data {
+                display: flex;
+                align-items: center;
+                gap: 14px;
+            }
+
+            .desktop-buttons {
+                display: none;
+
+                @media screen and (min-width: 800px) {
+                    display: block;
+                }
             }
 
             .username {
