@@ -7,6 +7,7 @@ export const downvote = (e: Event) => {
     const btn = e.target as Element
     const closestLi: HTMLLIElement = btn.closest("li")
     const userScore: HTMLSpanElement = closestLi.querySelector(".score")
+    const userScoreDesktop: HTMLSpanElement = closestLi.querySelector(".score-desktop") 
 
     if (closestLi.id.startsWith("reply")) {
         const catchCommentElement: HTMLLIElement = closestLi.parentElement.closest("li")
@@ -18,6 +19,7 @@ export const downvote = (e: Event) => {
             number--
 
             userScore.innerText = `${number}`
+            userScoreDesktop.innerText = `${number}`
             catchReply.score = number
             catchReply.voted = false
 
@@ -32,6 +34,8 @@ export const downvote = (e: Event) => {
             number--
 
             userScore.innerText = `${number}`
+            userScoreDesktop.innerText = `${number}`
+
             catchCommentInObject.score = number
             catchCommentInObject.voted = false
 

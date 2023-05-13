@@ -2,11 +2,13 @@ import {updateReply} from "./UpdateReply"
 
 export const editReply = (e: Event) => {
     const editBtn = e.target as HTMLButtonElement
-    const liElement = e.currentTarget as HTMLLIElement       
+    const liElement = e.currentTarget as HTMLLIElement
+    console.log(liElement);
+           
 
     if (editBtn.classList.contains("edit-btn") || editBtn.classList.contains("edit-img")) {
         //content of reply
-        const content = liElement.querySelector(".content") as HTMLParagraphElement
+        const content = liElement.querySelector(".content") as HTMLParagraphElement        
 
         //create new textarea element
         const textarea: HTMLTextAreaElement = document.createElement("textarea")
@@ -18,14 +20,16 @@ export const editReply = (e: Event) => {
 
         //add update button
 
-        const replyDiv = liElement.querySelector(".reply") as HTMLDivElement
+        const replyDiv = liElement.querySelector(".comment") as HTMLDivElement
+        console.log(replyDiv);
+        
         
         const updateBtn: HTMLButtonElement = document.createElement("button")
         updateBtn.classList.add("update-btn")
         updateBtn.innerText = "UPDATE"
         updateBtn.addEventListener("click", updateReply)
 
-        replyDiv.append(updateBtn)
+        replyDiv?.append(updateBtn)
                 
         liElement.removeEventListener("click", editReply)
     }

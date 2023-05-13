@@ -15,46 +15,50 @@ export const renderReply = (reply: Replies) => {
     newReplyLi.innerHTML = `
         <div class="comment">
             <div class="comment-wrapper">
-                <div class="votes-container-desktop">
+                <div class="votes-container votes-container-desktop">
                     <button class="upvotes">+</button>
-                    <span class="score">${reply.score}</span>
+                    <span class="score-desktop">${reply.score}</span>
                     <button class="downvotes">-</button>
                 </div>
                 <div class="comment-info">
                     <div class="comment-data">
-                        <div class="user-data">
-                            <img class="avatar" src="${reply.user.image.png}" alt="avatar"></img>
-                            <span class="username">${reply.user.username}</span>
-                            ${reply.user.username === loggedUser.username 
-                                ? `<span class="comment-author-flag">you</span>` : ""}
-                            <span class="date">${reply.createdAt}</span>
+                        <div class="comment-wrapper-desktop">
+                            <div class="user-data">
+                                <img class="avatar" src="${reply.user.image.png}" alt="avatar"></img>
+                                <span class="username">${reply.user.username}</span>
+                                ${reply.user.username === loggedUser.username 
+                                    ? `<span class="comment-author-flag">you</span>` : ""}
+                                <span class="date">${reply.createdAt}</span>
+                            </div>
+
+                            <div class="desktop-buttons">
+                                ${reply.user.username === loggedUser.username 
+                                ?
+                                `<div class="logged-user-buttons">
+                                    <button class="delete-btn">
+                                        <img src="./images/icon-delete.svg" att="bin">
+                                        Delete
+                                    </button>
+                                    <button class="edit-btn">
+                                        <img src="./images/icon-edit.svg" att="bin">
+                                        Edit
+                                    </button>
+                                </div>` 
+                                :
+                                `<button class="reply-button">
+                                    <img class="reply-image" src="./images/icon-reply.svg"></img>
+                                    Reply
+                                </button>`
+                                }
+                            </div>
                         </div>
-                        
-                        <div class="desktop-buttons">
-                            ${reply.user.username === loggedUser.username 
-                            ?
-                            `<div class="logged-user-buttons">
-                                <button class="delete-btn">
-                                    <img src="./images/icon-delete.svg" att="bin">
-                                    Delete
-                                </button>
-                                <button class="edit-comment-btn">
-                                    <img src="./images/icon-edit.svg" att="bin">
-                                    Edit
-                                </button>
-                            </div>` 
-                            :
-                            `<button class="reply-button">
-                                <img class="reply-image" src="./images/icon-reply.svg"></img>
-                                Reply
-                            </button>`
-                            }
-                        </div>
+                    
                         <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
+
                     </div>    
                 </div>
             </div>        
-            
+        
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
@@ -68,7 +72,7 @@ export const renderReply = (reply: Replies) => {
                         <img src="./images/icon-delete.svg" att="bin">
                         Delete
                     </button>
-                    <button class="edit-comment-btn">
+                    <button class="edit-btn">
                         <img src="./images/icon-edit.svg" att="bin">
                         Edit
                     </button>
@@ -79,21 +83,23 @@ export const renderReply = (reply: Replies) => {
                     Reply
                 </button>`
                 }
-            </div>
         </div>
+    </div>
+
+        
     `
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)
 
-    const deleteBtn: HTMLButtonElement = newReplyLi.querySelector(".delete-btn")
-    deleteBtn?.addEventListener("click", deletePost)
+    const deleteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".delete-btn")
+    deleteBtns.forEach(deleteBtn => deleteBtn.addEventListener("click", deletePost))    
 
-    const upvoteBtn: HTMLButtonElement = newReplyLi.querySelector(".upvotes")
-    upvoteBtn.addEventListener("click", upvote)
+    const upvoteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".upvotes")
+    upvoteBtns.forEach(upvoteBtn => upvoteBtn.addEventListener("click", upvote))
 
-    const downvoteBtn: HTMLButtonElement = newReplyLi.querySelector(".downvotes")
-    downvoteBtn.addEventListener("click", downvote)
+    const downvoteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".downvotes")
+    downvoteBtns.forEach(downvoteBtn => downvoteBtn.addEventListener("click", downvote))
     
 
     return newReplyLi

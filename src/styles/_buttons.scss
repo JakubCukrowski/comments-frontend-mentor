@@ -18,24 +18,8 @@ button {
     justify-content: space-between;
     margin-top: 0.8em;
 
-    .votes-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 1em;
-        width: 100px;
-        padding: 8px 0;
-        border-radius: 0.5em;
-        background-color: $very-light-gray;
-
-        button {
-            font-size: 24px;
-            color: $light_grayish_blue;
-        }
-
-        .score {
-            color: $moderate-blue;
-        }
+    @media screen and (min-width: 800px) {
+        display: none;
     }
 
     .reply-button {
@@ -76,4 +60,35 @@ button {
     color: $white;
     padding: 10px 16px;
     border-radius: 0.4em;
+}
+
+.votes-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+    width: 100px;
+    padding: 8px 0;
+    border-radius: 0.5em;
+    background-color: $very-light-gray;
+
+    button {
+        font-size: 24px;
+        color: $light_grayish_blue;
+    }
+
+    .score {
+        color: $moderate-blue;
+    }
+}
+
+.votes-container-desktop {
+    display: none;
+
+    @media screen and (min-width: 800px) {
+        display: flex;
+        flex-direction: column;
+        width: 80px;
+        margin-right: 12px;
+    }
 }

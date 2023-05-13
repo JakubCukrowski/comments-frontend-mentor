@@ -15,6 +15,9 @@ export const updateComment = (e: Event) => {
     newP.classList.add("content")
     newP.innerText = textarea.value
 
+    console.log(textarea.value);
+    
+
     commentToUpdate.content = textarea.value
 
     const commentsToJSON: string = JSON.stringify(commentsToObject)
