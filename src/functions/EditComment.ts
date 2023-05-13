@@ -24,7 +24,7 @@ export const editComment = (e: Event) => {
     updateBtn.innerText = "UPDATE"
     updateBtn.addEventListener("click", updateComment)
 
-    replyDiv.prepend(updateBtn)
+    replyDiv.append(updateBtn)
             
     editBtn.removeEventListener("click", editComment)
 

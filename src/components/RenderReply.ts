@@ -13,38 +13,72 @@ export const renderReply = (reply: Replies) => {
     newReplyLi.addEventListener("click", createReplyToReply)
     
     newReplyLi.innerHTML = `
-        <div class="reply">
-            <div class="reply-wrapper">
-                <div class="userinfo">
-                    <img src="${reply.user.image.png}" alt="avatar"></img>
-                        <span class="username">${reply.user.username}</span>
-                        ${reply.user.username === loggedUser.username ? 
-                        `<span class="comment-author-flag">you</span>` : ""}
-                        <span class="date">${reply.createdAt}</span>
+        <div class="comment">
+            <div class="comment-wrapper">
+                <div class="votes-container-desktop">
+                    <button class="upvotes">+</button>
+                    <span class="score">${reply.score}</span>
+                    <button class="downvotes">-</button>
                 </div>
-            </div>
-            <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
+                <div class="comment-info">
+                    <div class="comment-data">
+                        <div class="user-data">
+                            <img class="avatar" src="${reply.user.image.png}" alt="avatar"></img>
+                            <span class="username">${reply.user.username}</span>
+                            ${reply.user.username === loggedUser.username 
+                                ? `<span class="comment-author-flag">you</span>` : ""}
+                            <span class="date">${reply.createdAt}</span>
+                        </div>
+                        
+                        <div class="desktop-buttons">
+                            ${reply.user.username === loggedUser.username 
+                            ?
+                            `<div class="logged-user-buttons">
+                                <button class="delete-btn">
+                                    <img src="./images/icon-delete.svg" att="bin">
+                                    Delete
+                                </button>
+                                <button class="edit-comment-btn">
+                                    <img src="./images/icon-edit.svg" att="bin">
+                                    Edit
+                                </button>
+                            </div>` 
+                            :
+                            `<button class="reply-button">
+                                <img class="reply-image" src="./images/icon-reply.svg"></img>
+                                Reply
+                            </button>`
+                            }
+                        </div>
+                        <p class="content"><span class="replying-to">@${reply.replyingTo}</span> ${reply.content}</p>
+                    </div>    
+                </div>
+            </div>        
+            
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>
                     <span class="score">${reply.score}</span>
                     <button class="downvotes">-</button>
                 </div>
-                ${reply.user.username === loggedUser.username ?
+                ${reply.user.username === loggedUser.username 
+                ?
                 `<div class="logged-user-buttons">
                     <button class="delete-btn">
-                        <img class="delete-img" src="./images/icon-delete.svg" att="bin">
+                        <img src="./images/icon-delete.svg" att="bin">
                         Delete
                     </button>
-                        <button class="edit-btn">
-                        <img class="edit-img" src="./images/icon-edit.svg" att="bin">
-                    Edit
+                    <button class="edit-comment-btn">
+                        <img src="./images/icon-edit.svg" att="bin">
+                        Edit
                     </button>
-                </div>` :
+                </div>` 
+                :
                 `<button class="reply-button">
                     <img class="reply-image" src="./images/icon-reply.svg"></img>
                     Reply
-                </button>`}
+                </button>`
+                }
             </div>
         </div>
     `

@@ -27,7 +27,7 @@ export const deletePost = (e: Event) => {
         deleteBtn.classList.add("confirm-delete-btn")
 
         const buttonsContainer: HTMLDivElement = document.createElement("div")
-        buttonsContainer.classList.add("buttons-container")
+        buttonsContainer.classList.add("popup-buttons-container")
         buttonsContainer.append(cancelBtn, deleteBtn)
 
         popup.append(buttonsContainer)

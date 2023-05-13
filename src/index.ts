@@ -9,7 +9,7 @@ if (localStorage.length === 0) {
     localStorage.setItem("comments", commentsToJSON)
 }
 
-const getComments = localStorage.getItem("comments")
+const getComments: string = localStorage.getItem("comments")
 export const commentsToObject: Array<Comments> = JSON.parse(getComments)
 
 commentsToObject.forEach(comment => {

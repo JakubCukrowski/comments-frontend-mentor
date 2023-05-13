@@ -1,0 +1,79 @@
+button {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+}
+
+.desktop-buttons {
+    display: none;
+
+    @media screen and (min-width: 800px) {
+        display: block;
+    }
+}
+
+.buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.8em;
+
+    .votes-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1em;
+        width: 100px;
+        padding: 8px 0;
+        border-radius: 0.5em;
+        background-color: $very-light-gray;
+
+        button {
+            font-size: 24px;
+            color: $light_grayish_blue;
+        }
+
+        .score {
+            color: $moderate-blue;
+        }
+    }
+
+    .reply-button {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        color: $moderate-blue;
+        font-weight: 700;
+        background-color: transparent;
+        border: none;
+        font-size: 14px;
+    }
+
+    .logged-user-buttons {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+        }
+
+        .delete-btn {
+            color: $soft_red;
+        }
+
+        .edit-comment-btn {
+            color: $moderate-blue;
+        }
+    }    
+}
+
+.submit-reply-btn {
+    background-color: $moderate-blue;
+    color: $white;
+    padding: 10px 16px;
+    border-radius: 0.4em;
+}

@@ -1,6 +1,6 @@
 @import "./colors";
 @import "./comments";
-@import "./button";
+@import "./buttons";
 @import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap');
 
 * {
@@ -10,10 +10,13 @@
     font-family: 'Rubik', sans-serif;
 }
 
+body {
+    background-color: $very_light_gray;
+}
+
 .disabled {
     position: relative;
     overflow: hidden;
-    // overflow: hidden;
     &::after {
         content: "";
         position: absolute;

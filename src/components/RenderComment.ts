@@ -19,37 +19,50 @@ export const renderComment = (comment: Comments) => {
     newCommentLi.innerHTML = `
         <div class="comment">
             <div class="comment-wrapper">
-                <div class="userinfo">
-                    <div class="user-data">
-                        <img src="${comment.user.image.png}" alt="avatar"></img>
-                        <span class="username">${comment.user.username}</span>
-                        ${comment.user.username === loggedUser.username 
-                            ? `<span class="comment-author-flag">you</span>` : ""}
-                        <span class="date">${comment.createdAt}</span>
-                    </div>
-                    <div class="desktop-buttons">
-                    ${comment.user.username === loggedUser.username 
-                        ?
-                        `<div class="logged-user-buttons">
-                            <button class="delete-btn">
-                                <img src="./images/icon-delete.svg" att="bin">
-                                Delete
-                            </button>
-                            <button class="edit-comment-btn">
-                                <img src="./images/icon-edit.svg" att="bin">
-                                Edit
-                            </button>
-                        </div>` 
-                        :
-                        `<button class="reply-button">
-                            <img class="reply-image" src="./images/icon-reply.svg"></img>
-                            Reply
-                        </button>`
-                        }
-                    </div>
+                <div class="votes-container-desktop">
+                    <button class="upvotes">+</button>
+                    <span class="score">${comment.score}</span>
+                    <button class="downvotes">-</button>
                 </div>
-            </div>
-            <p class="content">${comment.content}</p>
+                <div class="comment-info">
+                    <div class="comment-data">
+                        <div class="comment-wrapper-desktop">
+                            <div class="user-data">
+                                <img class="avatar" src="${comment.user.image.png}" alt="avatar"></img>
+                                <span class="username">${comment.user.username}</span>
+                                ${comment.user.username === loggedUser.username 
+                                    ? `<span class="comment-author-flag">you</span>` : ""}
+                                <span class="date">${comment.createdAt}</span>
+                            </div>
+
+                            <div class="desktop-buttons">
+                            ${comment.user.username === loggedUser.username 
+                            ?
+                            `<div class="logged-user-buttons">
+                                <button class="delete-btn">
+                                    <img src="./images/icon-delete.svg" att="bin">
+                                    Delete
+                                </button>
+                                <button class="edit-comment-btn">
+                                    <img src="./images/icon-edit.svg" att="bin">
+                                    Edit
+                                </button>
+                            </div>` 
+                            :
+                            `<button class="reply-button">
+                                <img class="reply-image" src="./images/icon-reply.svg"></img>
+                                Reply
+                            </button>`
+                            }
+                        </div>
+                    </div>
+                    
+                    <p class="content">${comment.content}</p>
+
+                    </div>    
+                </div>
+            </div>        
+            
             <div class="buttons-container">
                 <div class="votes-container">
                     <button class="upvotes">+</button>

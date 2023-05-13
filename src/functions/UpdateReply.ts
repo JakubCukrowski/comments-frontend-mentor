@@ -28,7 +28,7 @@ export const updateReply = (e: Event) => {
     newSpan.classList.add("replying-to")
     newSpan.innerText = `@${searchedReply.replyingTo + " "}`
     
-    newP.prepend(newSpan)
+    newP.append(newSpan)
 
     textarea.replaceWith(newP)
 

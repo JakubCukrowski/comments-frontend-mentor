@@ -1,161 +1,91 @@
-body {
-    background-color: $very_light_gray;
-}
+.comment {
+    background-color: $white;
+    margin-bottom: 1.2em;
+    padding: 0.75em;
+    border-radius: 0.4em;
 
-
-li:not(.temp-li-element) {
-
-    img {
-        width: 30px;
-        height: 30px;
-    }
-
-    margin-bottom: 20px;
-
-    .comment,
-    .reply {
-        border-radius: 0.5em;
-        padding: 12px;
-        background-color: $white;
-        display: flex;
-        flex-direction: column;
+    .votes-container-desktop {
+        display: none;
 
         @media screen and (min-width: 800px) {
-            padding: 16px 20px;
+            display: block;
+        }
+    }
+
+    .user-data {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 1em;
+
+        .avatar {
+            width: 34px;
+            height: 34px;
         }
 
-        .userinfo {
-            margin-bottom: 1em;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+        .username {
+            font-weight: 700;
+        }
 
-            .user-data {
-                display: flex;
-                align-items: center;
-                gap: 14px;
-            }
-
-            .desktop-buttons {
-                display: none;
-
-                @media screen and (min-width: 800px) {
-                    display: block;
-                }
-            }
-
-            .username {
-                font-weight: 700;
-            }
-
-            .comment-author-flag {
-                background-color: $moderate_blue;
-                color: $white;
-                padding: 0.1em 0.4em;
-                border-radius: 0.2em;
-            }
-
+        .comment-author-flag {
+            background-color: $moderate-blue;
+            color: $white;
+            padding: 1px 2px;
+            border-radius: 0.1em;
         }
 
         .date {
             color: $grayish_blue;
         }
+    }
 
-        p {
-            color: $grayish_blue;
-            line-height: 24px;
+    .content {
+        color: $grayish_blue;
+        line-height: 24px;
+
+        .replying-to {
+            color: $moderate-blue;
+            font-weight: 700;
         }
     }
 }
 
 .replies-container {
-    padding-left: 20px;
-    border-left: 3px solid $light_gray;
-    margin-top: 20px;
+    border-left: 2px solid $light_gray;
+    padding-left: 16px;
 
-    .replying-to {
-        color: $moderate_blue;
-        font-weight: 700;
+    @media screen and (min-width: 800px) {
+        margin-left: 16px;
     }
 }
 
-
-.new-reply-window,
-.new-comment {
-    margin-top: 10px;
-    border-radius: 0.5em;
-    padding: 12px;
+.new-reply-window {
     background-color: $white;
+    margin-bottom: 20px;
+    margin-top: -10px;
+    padding: 12px;
+
+    .textarea {
+        width: 100%;
+        height: 100px;
+        resize: none;
+        padding: 10px;
+        border: 1px solid $light_gray;
+        border-radius: 0.4em;
+        font-size: 16px;
+    }
 
     .bottom-reply-container {
         display: flex;
-        justify-content: space-between;
         align-items: center;
-        margin-top: 1.2em;
+        justify-content: space-between;
+        margin-top: 1em;
+
+        img {
+            width: 34px;
+            height: 34px;
+
+        }
+
     }
-}
-
-.textarea {
-    width: 100%;
-    height: 100px;
-    border: 1px solid $light_gray;
-    padding: 10px;
-    border-radius: 0.4em;
-    resize: none;
-    font-size: 16px;
-}
-
-#reply-new {
-    margin-top: -10px;
-}
-
-.new-comment {
-    margin-top: 10px;
-
-    img {
-        width: 30px;
-        height: 30px;
-    }
-}
-
-.popup {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 100;
-    background-color: $white;
-    padding: 24px;
-    width: 90%;
-    border-radius: 0.5em;
-
-    h2 {
-        margin-bottom: 1em;
-    }
-
-    p {
-        margin-bottom: 0.6em;
-    }
-
-    .buttons-container {
-        gap: 10px;
-    }
-
-    button {
-        width: 100%;
-        padding: 14px 0;
-        border-radius: 0.4em;
-        border: none;
-        color: $white;
-        font-weight: 500;
-    }
-
-    .cancel-btn {
-        background-color: $grayish_blue;
-    }
-
-    .confirm-delete-btn {
-        background-color: $soft_red;
-    }
-
 }
