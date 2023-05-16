@@ -10,6 +10,10 @@ ul {
     border-radius: 0.4em;
     display: flex;
     flex-direction: column;
+    
+    &:not(.new-comment) {
+        min-height: 150px;
+    }
 
     .comment-info {
         width: 100%;
@@ -49,6 +53,22 @@ ul {
             color: $moderate-blue;
             font-weight: 700;
         }
+    }
+}
+
+.new-comment {
+    @media screen and (min-width: 800px) {
+        flex-direction: row;
+        gap: 20px;
+    }
+
+    img {
+        width: 40px;
+        height: 40px;
+    }
+
+    button {
+        align-self: flex-start;
     }
 }
 
@@ -102,9 +122,13 @@ ul {
     font-size: 16px;
 }
 
-.comment-data {
+.comment-data-new {
     justify-content: space-between;
     margin-top: 10px;
+
+    @media screen and (min-width: 800px) {
+        display: none !important;
+    }
 }
 
 .popup {
@@ -127,27 +151,12 @@ ul {
         color: $grayish_blue;
     }
 
-    .popup-buttons-container {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        margin-top: 14px;
-    
-        button {
-            width: 100%;
-            padding: 12px 0;
-            border-radius: 0.4em;
-            font-size: 16px;
-            color: $white;
-        }
-    
-        .cancel-btn {
-            background-color: $grayish_blue;
-        }
-    
-        .confirm-delete-btn {
-            background-color: $soft_red;
-        }
+}
+
+.avatar-desktop {
+    display: none;
+
+    @media screen and (min-width: 800px) {
+        display: block;
     }
 }

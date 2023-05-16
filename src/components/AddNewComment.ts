@@ -13,15 +13,17 @@ export const addNewComment = () => {
     newDivElement.classList.add("new-comment")
 
     newDivElement.innerHTML = `
+        <img class="avatar avatar-desktop" src="${loggedUser.image.png}" alt="avatar">
         <textarea class="textarea" maxlength="120" placeholder="Add comment"></textarea>
-        <div class ="user-data comment-data">
+        <button class="submit-reply-btn submit-reply-dekstop">SEND</button>
+        <div class ="user-data comment-data-new">
             <img class="avatar" src="${loggedUser.image.png}" alt="avatar">
             <button class="submit-reply-btn">SEND</button>
         </div>
         `
-    const submitBtn: HTMLButtonElement = newDivElement.querySelector(".submit-reply-btn")
+    const submitBtns: NodeListOf<HTMLButtonElement> = newDivElement.querySelectorAll(".submit-reply-btn")
     const textarea: HTMLTextAreaElement = newDivElement.querySelector(".textarea") as HTMLTextAreaElement
-    submitBtn.addEventListener("click", () => {
+    submitBtns.forEach(submitBtn => submitBtn.addEventListener("click", () => {
         
         const newComment: Comments = {
             id: commentsToObject.length + commentsToObject.map(comment => comment.replies).flat().length + 1,
@@ -45,6 +47,6 @@ export const addNewComment = () => {
         renderComment(newComment)
         textarea.value = ""
 
-    })
+    }))
     containerElement.append(newDivElement)
 }
