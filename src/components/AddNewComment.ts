@@ -14,8 +14,8 @@ export const addNewComment = () => {
 
     newDivElement.innerHTML = `
         <textarea class="textarea" maxlength="120" placeholder="Add comment"></textarea>
-        <div class ="bottom-reply-container">
-            <img src="${loggedUser.image.png}" alt="avatar">
+        <div class ="user-data comment-data">
+            <img class="avatar" src="${loggedUser.image.png}" alt="avatar">
             <button class="submit-reply-btn">SEND</button>
         </div>
         `

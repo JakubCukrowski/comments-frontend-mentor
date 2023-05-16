@@ -1,8 +1,19 @@
-.comment {
+ul {
+    list-style: none;
+}
+
+.comment,
+.new-comment {
     background-color: $white;
     margin-bottom: 1.2em;
     padding: 0.75em;
     border-radius: 0.4em;
+    display: flex;
+    flex-direction: column;
+
+    .comment-info {
+        width: 100%;
+    }
 
     .user-data {
         display: flex;
@@ -43,10 +54,10 @@
 
 .replies-container {
     border-left: 2px solid $light_gray;
-    padding-left: 16px;
+    padding-left: 20px;
 
     @media screen and (min-width: 800px) {
-        margin-left: 16px;
+        margin-left: 20px;
     }
 }
 
@@ -89,4 +100,54 @@
     border: 1px solid $light_gray;
     border-radius: 0.4em;
     font-size: 16px;
+}
+
+.comment-data {
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    z-index: 20;
+    padding: 20px;
+    width: 350px;
+    border-radius: 0.4em;
+
+    h2 {
+        margin-bottom: 20px;
+        color: $dark_blue;
+    }
+
+    p {
+        color: $grayish_blue;
+    }
+
+    .popup-buttons-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-top: 14px;
+    
+        button {
+            width: 100%;
+            padding: 12px 0;
+            border-radius: 0.4em;
+            font-size: 16px;
+            color: $white;
+        }
+    
+        .cancel-btn {
+            background-color: $grayish_blue;
+        }
+    
+        .confirm-delete-btn {
+            background-color: $soft_red;
+        }
+    }
 }

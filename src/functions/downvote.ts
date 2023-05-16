@@ -15,7 +15,7 @@ export const downvote = (e: Event) => {
         const catchReply: Replies = catchCommentInObject.replies.find(reply => closestLi.id === `reply-${reply.id}`) 
 
         if (catchReply.voted && catchReply.user.username !== loggedUser.username) {
-            let number = catchCommentInObject.score
+            let number = catchReply.score
             number--
 
             userScore.innerText = `${number}`

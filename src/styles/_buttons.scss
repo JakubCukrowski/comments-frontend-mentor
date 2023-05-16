@@ -21,41 +21,43 @@ button {
     @media screen and (min-width: 800px) {
         display: none;
     }
+}
 
-    .reply-button {
+.reply-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: $moderate-blue;
+    font-weight: 700;
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+}
+
+.logged-user-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    button {
         display: flex;
         align-items: center;
         gap: 6px;
-        color: $moderate-blue;
-        font-weight: 700;
-        background-color: transparent;
-        border: none;
-        font-size: 14px;
+        font-weight: 500;
     }
 
-    .logged-user-buttons {
-        display: flex;
-        align-items: center;
-        gap: 12px;
+    .delete-btn {
+        color: $soft_red;
+    }
 
-        button {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            font-weight: 500;
-        }
+    .edit-comment-btn,
+    .edit-btn {
+        color: $moderate-blue;
+    }
+}    
 
-        .delete-btn {
-            color: $soft_red;
-        }
-
-        .edit-comment-btn {
-            color: $moderate-blue;
-        }
-    }    
-}
-
-.submit-reply-btn {
+.submit-reply-btn,
+.update-btn {
     background-color: $moderate-blue;
     color: $white;
     padding: 10px 16px;
@@ -72,12 +74,18 @@ button {
     border-radius: 0.5em;
     background-color: $very-light-gray;
 
+    @media screen and (min-width: 800px) {
+        width: 50px !important;
+        gap: 0.6em;
+    }
+
     button {
         font-size: 24px;
         color: $light_grayish_blue;
     }
 
-    .score {
+    .score,
+    .score-desktop {
         color: $moderate-blue;
     }
 }
@@ -90,5 +98,39 @@ button {
         flex-direction: column;
         width: 80px;
         margin-right: 12px;
+        height: 106px;
+    }
+}
+
+.send-button {
+    padding: 10px 26px;
+}
+
+.update-btn {
+    align-self: flex-end;
+    margin-top: 10px;
+}
+
+.popup-buttons-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 14px;
+
+    button {
+        width: 100%;
+        padding: 12px 0;
+        border-radius: 0.4em;
+        font-size: 16px;
+        color: $white;
+    }
+
+    .cancel-btn {
+        background-color: $grayish_blue;
+    }
+
+    .confirm-delete-btn {
+        background-color: $soft_red;
     }
 }
