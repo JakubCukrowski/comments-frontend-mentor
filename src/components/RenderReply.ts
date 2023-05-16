@@ -16,8 +16,8 @@ export const renderReply = (reply: Replies) => {
         <div class="comment">
             <div class="comment-wrapper">
                 <div class="votes-container votes-container-desktop">
-                    <button class="upvotes">+</button>
-                    <span class="score-desktop">${reply.score}</span>
+                    <button class="upvotes-desktop ${reply.voted ? "voted" : ""}">+</button>
+                    <span class="score-desktop ${reply.voted ? "voted" : ""}">${reply.score}</span>
                     <button class="downvotes">-</button>
                 </div>
                 <div class="comment-info">
@@ -61,8 +61,8 @@ export const renderReply = (reply: Replies) => {
         
             <div class="buttons-container">
                 <div class="votes-container">
-                    <button class="upvotes">+</button>
-                    <span class="score">${reply.score}</span>
+                    <button class="upvotes ${reply.voted ? "voted" : ""}">+</button>
+                    <span class="score ${reply.voted ? "voted" : ""}">${reply.score}</span>
                     <button class="downvotes">-</button>
                 </div>
                 ${reply.user.username === loggedUser.username 

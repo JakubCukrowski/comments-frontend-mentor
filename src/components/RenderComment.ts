@@ -20,8 +20,8 @@ export const renderComment = (comment: Comments) => {
         <div class="comment">
             <div class="comment-wrapper">
                 <div class="votes-container votes-container-desktop">
-                    <button class="upvotes">+</button>
-                    <span class="score-desktop">${comment.score}</span>
+                    <button class="upvotes-desktop ${comment.voted ? "voted" : ""}">+</button>
+                    <span class="score-desktop ${comment.voted ? "voted" : ""}">${comment.score}</span>
                     <button class="downvotes">-</button>
                 </div>
                 <div class="comment-info">
@@ -65,8 +65,8 @@ export const renderComment = (comment: Comments) => {
             
             <div class="buttons-container">
                 <div class="votes-container">
-                    <button class="upvotes">+</button>
-                    <span class="score">${comment.score}</span>
+                    <button class="upvotes ${comment.voted ? "voted" : ""}">+</button>
+                    <span class="score ${comment.voted ? "voted" : ""}">${comment.score}</span>
                     <button class="downvotes">-</button>
                 </div>
                 ${comment.user.username === loggedUser.username 
@@ -119,6 +119,9 @@ export const renderComment = (comment: Comments) => {
 
     const upvoteBtns: NodeListOf<HTMLButtonElement> = newCommentLi.querySelectorAll(".upvotes")
     upvoteBtns.forEach(upvoteBtn => upvoteBtn.addEventListener("click", upvote))
+    
+    const upvoteDesktopBtns: NodeListOf<HTMLButtonElement> = newCommentLi.querySelectorAll(".upvotes-desktop")
+    upvoteDesktopBtns.forEach(upvoteBtn => upvoteBtn.addEventListener("click", upvote))
 
     const downvoteBtns: NodeListOf<HTMLButtonElement> = newCommentLi.querySelectorAll(".downvotes")
     downvoteBtns.forEach(downvoteBtn => downvoteBtn.addEventListener("click", downvote))

@@ -8,8 +8,10 @@ export const upvote = (e: Event) => {
     
     const closestLi: HTMLLIElement = btn.closest("li")
     const userScore: HTMLSpanElement = closestLi.querySelector(".score")
-    const userScoreDesktop: HTMLSpanElement = closestLi.querySelector(".score-desktop") 
-
+    const userScoreDesktop: HTMLSpanElement = closestLi.querySelector(".score-desktop")
+    const votesBtn: HTMLButtonElement = closestLi.querySelector(".upvotes")
+    const votesDesktopBtn: HTMLButtonElement = closestLi.querySelector(".upvotes-desktop")   
+    
     if (closestLi.id.startsWith("reply")) {
 
         const catchCommentElement: HTMLLIElement = closestLi.parentElement.closest("li")
@@ -24,6 +26,11 @@ export const upvote = (e: Event) => {
             userScoreDesktop.innerText = `${number}`
             catchReply.score = number
 
+            votesBtn.classList.add("voted")
+            votesDesktopBtn.classList.add("voted")
+            userScore.classList.add("voted")
+            userScoreDesktop.classList.add("voted")
+            
             catchReply.voted = true
 
             updateLocalStorage("comments", commentsToObject)
@@ -39,6 +46,11 @@ export const upvote = (e: Event) => {
             userScore.innerText = `${number}`
             userScoreDesktop.innerText = `${number}`
             catchCommentInObject.score = number
+
+            votesBtn.classList.add("voted")
+            votesDesktopBtn.classList.add("voted")
+            userScore.classList.add("voted")
+            userScoreDesktop.classList.add("voted")
 
             catchCommentInObject.voted = true
 

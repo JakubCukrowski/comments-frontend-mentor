@@ -2,9 +2,7 @@ import {updateReply} from "./UpdateReply"
 
 export const editReply = (e: Event) => {
     const editBtn = e.target as HTMLButtonElement
-    const liElement = e.currentTarget as HTMLLIElement
-    console.log(liElement);
-           
+    const liElement = e.currentTarget as HTMLLIElement           
 
     if (editBtn.classList.contains("edit-btn") || editBtn.classList.contains("edit-img")) {
         //content of reply
@@ -20,9 +18,7 @@ export const editReply = (e: Event) => {
 
         //add update button
 
-        const replyDiv = liElement.querySelector(".comment") as HTMLDivElement
-        console.log(replyDiv);
-        
+        const replyDiv = liElement.querySelector(".comment") as HTMLDivElement       
         
         const updateBtn: HTMLButtonElement = document.createElement("button")
         updateBtn.classList.add("update-btn")
