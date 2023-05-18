@@ -16,9 +16,11 @@ export const renderReply = (reply: Replies) => {
         <div class="comment">
             <div class="comment-wrapper">
                 <div class="votes-container votes-container-desktop">
-                    <button class="upvotes-desktop ${reply.voted ? "voted" : ""}">+</button>
-                    <span class="score-desktop ${reply.voted ? "voted" : ""}">${reply.score}</span>
-                    <button class="downvotes">-</button>
+                    <button class="upvotes-desktop ${reply.upvoted ? "upvoted" : ""}">+</button>
+                    <span class="score-desktop ${reply.upvoted ? "upvoted" : ""} ${reply.downvoted ? "downvoted" : ""}">
+                        ${reply.score}
+                    </span>
+                    <button class="downvotes-desktop ${reply.downvoted ? "downvoted" : ""}">-</button>
                 </div>
                 <div class="comment-info">
                     <div class="comment-data">
@@ -61,9 +63,11 @@ export const renderReply = (reply: Replies) => {
         
             <div class="buttons-container">
                 <div class="votes-container">
-                    <button class="upvotes ${reply.voted ? "voted" : ""}">+</button>
-                    <span class="score ${reply.voted ? "voted" : ""}">${reply.score}</span>
-                    <button class="downvotes">-</button>
+                    <button class="upvotes ${reply.upvoted ? "upvoted" : ""}">+</button>
+                    <span class="score ${reply.upvoted ? "upvoted" : ""} ${reply.downvoted ? "downvoted" : ""}">
+                        ${reply.score}
+                    </span>
+                    <button class="downvotes ${reply.downvoted ? "downvoted" : ""}">-</button>
                 </div>
                 ${reply.user.username === loggedUser.username 
                 ?
@@ -91,16 +95,6 @@ export const renderReply = (reply: Replies) => {
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)
-
-    const deleteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".delete-btn")
-    deleteBtns.forEach(deleteBtn => deleteBtn.addEventListener("click", deletePost))    
-
-    const upvoteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".upvotes")
-    upvoteBtns.forEach(upvoteBtn => upvoteBtn.addEventListener("click", upvote))
-
-    const downvoteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".downvotes")
-    downvoteBtns.forEach(downvoteBtn => downvoteBtn.addEventListener("click", downvote))
-    
 
     return newReplyLi
 }

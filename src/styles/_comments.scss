@@ -160,3 +160,12 @@ ul {
         display: block;
     }
 }
+
+
+.upvoted {
+    color: rgb(57, 167, 57) !important;
+}
+
+.downvoted {
+    color: $soft_red !important;
+}

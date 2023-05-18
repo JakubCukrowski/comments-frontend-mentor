@@ -20,9 +20,13 @@ export const renderComment = (comment: Comments) => {
         <div class="comment">
             <div class="comment-wrapper">
                 <div class="votes-container votes-container-desktop">
-                    <button class="upvotes-desktop ${comment.voted ? "voted" : ""}">+</button>
-                    <span class="score-desktop ${comment.voted ? "voted" : ""}">${comment.score}</span>
-                    <button class="downvotes">-</button>
+                    <button class="upvotes-desktop ${comment.upvoted ? "upvoted" : ""}">
+                        +
+                    </button>
+                    <span class="score-desktop ${comment.upvoted ? "upvoted" : ""} ${comment.downvoted ? "downvoted" : ""}">
+                        ${comment.score}
+                    </span>
+                    <button class="downvotes-desktop ${comment.downvoted ? "downvoted" : ""}">-</button>
                 </div>
                 <div class="comment-info">
                     <div class="comment-data">
@@ -65,9 +69,11 @@ export const renderComment = (comment: Comments) => {
             
             <div class="buttons-container">
                 <div class="votes-container">
-                    <button class="upvotes ${comment.voted ? "voted" : ""}">+</button>
-                    <span class="score ${comment.voted ? "voted" : ""}">${comment.score}</span>
-                    <button class="downvotes">-</button>
+                    <button class="upvotes ${comment.upvoted ? "upvoted" : ""}">+</button>
+                    <span class="score ${comment.upvoted ? "upvoted" : ""} ${comment.downvoted ? "downvoted" : ""}">
+                        ${comment.score}
+                    </span>
+                    <button class="downvotes ${comment.downvoted ? "downvoted" : ""}">-</button>
                 </div>
                 ${comment.user.username === loggedUser.username 
                 ?
@@ -125,5 +131,8 @@ export const renderComment = (comment: Comments) => {
 
     const downvoteBtns: NodeListOf<HTMLButtonElement> = newCommentLi.querySelectorAll(".downvotes")
     downvoteBtns.forEach(downvoteBtn => downvoteBtn.addEventListener("click", downvote))
+
+    const downvoteDesktopBtns: NodeListOf<HTMLButtonElement> = newCommentLi.querySelectorAll(".downvotes-desktop")
+    downvoteDesktopBtns.forEach(downvoteBtn => downvoteBtn.addEventListener("click", downvote))
     
 }

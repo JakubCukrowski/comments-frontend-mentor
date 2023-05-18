@@ -11,7 +11,8 @@ export interface Replies {
     content: string;
     createdAt: string;
     score: number;
-    voted: boolean;
+    upvoted: boolean;
+    downvoted: boolean;
     replyingTo: string;
     user: {
         image: {
@@ -24,18 +25,19 @@ export interface Replies {
 }
 
 export interface Comments {
-    id: number
-    content: string
-    createdAt: string
-    score: number
-    voted: boolean
+    id: number;
+    content: string;
+    createdAt: string;
+    score: number;
+    upvoted: boolean;
+    downvoted: boolean;
     user: {
         image: {
-            png: string
-            webp: string
+            png: string;
+            webp: string;
         },
 
-        username: string
+        username: string;
     },
 
     replies: Array<Replies>
