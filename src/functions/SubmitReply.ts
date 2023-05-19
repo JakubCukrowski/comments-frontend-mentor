@@ -101,6 +101,5 @@ export const submitReply = (e: Event) => {
         }
     }
 
-    commentLi.addEventListener("click", createReplyToComment)   
-    
+    commentLi.addEventListener("click", createReplyToComment)     
 }

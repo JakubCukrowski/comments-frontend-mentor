@@ -23,7 +23,8 @@ button {
     }
 }
 
-.reply-button {
+.reply-button,
+.reply-comment-button {
     display: flex;
     align-items: center;
     gap: 6px;

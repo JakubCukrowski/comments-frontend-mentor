@@ -87,15 +87,40 @@ ul {
     margin-top: -10px;
     padding: 12px;
 
+    @media screen and (min-width: 800px) {
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+    .desktop-profile-img {
+
+        display: none;
+
+        @media screen and (min-width: 800px) {
+            display: block;
+            width: 34px;
+            height: 34px;
+        }
+    }
+
     .bottom-reply-container {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-top: 1em;
+        
+        @media screen and (min-width: 800px) {
+            margin-top: 0;
+        }
 
         img {
             width: 34px;
             height: 34px;
+
+            @media screen and (min-width: 800px) {
+                display: none;
+            }
 
         }
 

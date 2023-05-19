@@ -1,6 +1,7 @@
 import { commentsToObject } from "../index"
 import { Comments, Replies } from "../components/Types"
 import { updateLocalStorage } from "./UpdateLocalStorage"
+import { editReply } from "./EditReply"
 
 export const updateReply = (e: Event) => {
     const updateBtn = e.target as HTMLButtonElement
@@ -34,4 +35,5 @@ export const updateReply = (e: Event) => {
 
     updateBtn.remove()
     
+    liElement.addEventListener("click", editReply)
 }

@@ -3,6 +3,7 @@ import { commentsToObject } from "../index"
 import {submitReply} from "./SubmitReply"
 
 export const createReplyToComment = (event: Event) => {
+    
     //target reply button on reply window
     const replyButton = event.target as Element
 
@@ -13,10 +14,20 @@ export const createReplyToComment = (event: Event) => {
     const lastChildOfLi = commentLiElement.lastChild as Element
     
     //comment which we are reffering to
-    const filterComments = commentsToObject.filter(comment => commentLiElement.id === `comment-${comment.id}`)    
+    const filterComments = commentsToObject.filter(comment => commentLiElement.id === `comment-${comment.id}`)
     
     //logic to render new reply window
-    if (replyButton.classList.contains("reply-button") || replyButton.classList.contains("reply-image")) {
+    if (replyButton.classList.contains("reply-comment-button") || replyButton.classList.contains("reply-image")) {
+
+        //delete other replies container
+        const allReplies: NodeListOf<HTMLUListElement> = document.querySelectorAll(".temporary")
+        allReplies.forEach(reply => reply.remove())
+
+        const newRepliesContainerElement: HTMLLIElement = document.querySelector("#reply-new")
+        if (newRepliesContainerElement) {
+            newRepliesContainerElement.remove()
+        }
+
         if (!replyButton.closest("ul").classList.contains("replies-container")) {
             const tempUl: HTMLUListElement = document.createElement("ul")
             tempUl.classList.add("temporary")
@@ -28,6 +39,7 @@ export const createReplyToComment = (event: Event) => {
             
             newReplyCreator.classList.add("new-reply-window")
             newReplyCreator.innerHTML = `
+                <img class="desktop-profile-img" src="${loggedUser.image.png}" alt="avatar"></img>
                 <textarea class="textarea" maxlength="120">@${filterComments[0].user.username}, </textarea>
                 <div class ="bottom-reply-container">
                     <img src="${loggedUser.image.png}" alt="avatar"></img>
@@ -48,7 +60,6 @@ export const createReplyToComment = (event: Event) => {
             
         
         } 
-
-        commentLiElement.removeEventListener("click", createReplyToComment)
+        
     }
 }

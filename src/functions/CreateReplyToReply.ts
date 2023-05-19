@@ -7,8 +7,19 @@ export const createReplyToReply = (e: Event) => {
     const replyButton = e.target as Element    
   
     if (replyButton.classList.contains("reply-button") || replyButton.classList.contains("reply-image")) {
+       
         //catch replies container, parent element of event target to append the reply window to it
         const repliesContainer = replyLi.parentElement as HTMLUListElement
+
+        //delete reply container if outside replies-container
+        const temporaries: NodeListOf<HTMLUListElement> = document.querySelectorAll(".temporary")
+        temporaries.forEach(temporary => temporary.remove())
+
+        //delete if inside replies-container
+        if (repliesContainer.querySelector("#reply-new")) {
+            repliesContainer.querySelector("#reply-new").remove()
+        }
+        
         
         //li of a comment 
         const commentLi: HTMLLIElement = repliesContainer.closest("li")
@@ -26,6 +37,7 @@ export const createReplyToReply = (e: Event) => {
                 
         newReplyCreator.classList.add("new-reply-window")
         newReplyCreator.innerHTML = `
+            <img class="desktop-profile-img" src="${loggedUser.image.png}" alt="avatar"></img>
             <textarea class="textarea" maxlength="120">@${replyRef[0].user.username}, </textarea>
             <div class ="bottom-reply-container">
                 <img src="${loggedUser.image.png}" alt="avatar"></img>
@@ -34,7 +46,6 @@ export const createReplyToReply = (e: Event) => {
             `
         newReplyLi.append(newReplyCreator)
         repliesContainer.insertBefore(newReplyLi, replyLi.nextElementSibling)
-        replyLi.removeEventListener("click", createReplyToReply)
     }
     
 }

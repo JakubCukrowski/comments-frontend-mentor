@@ -13,10 +13,7 @@ export const updateComment = (e: Event) => {
 
     const newP: HTMLParagraphElement = document.createElement("p")
     newP.classList.add("content")
-    newP.innerText = textarea.value
-
-    console.log(textarea.value);
-    
+    newP.innerText = textarea.value    
 
     commentToUpdate.content = textarea.value
 

@@ -53,7 +53,7 @@ export const renderComment = (comment: Comments) => {
                                 </button>
                             </div>` 
                             :
-                            `<button class="reply-button">
+                            `<button class="reply-comment-button">
                                 <img class="reply-image" src="./images/icon-reply.svg"></img>
                                 Reply
                             </button>`
@@ -88,7 +88,7 @@ export const renderComment = (comment: Comments) => {
                     </button>
                 </div>` 
                 :
-                `<button class="reply-button">
+                `<button class="reply-comment-button">
                     <img class="reply-image" src="./images/icon-reply.svg"></img>
                     Reply
                 </button>`
