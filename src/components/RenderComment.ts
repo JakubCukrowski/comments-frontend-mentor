@@ -6,6 +6,7 @@ import { editComment } from "../functions/EditComment"
 import { deletePost } from "../functions/DeletePost"
 import { upvote } from "../functions/upvote"
 import { downvote } from "../functions/downvote"
+import { elapsedTime } from "../functions/ElapsedTime"
 
 export const renderComment = (comment: Comments) => {
     //ul of class comments created in HTML
@@ -36,7 +37,7 @@ export const renderComment = (comment: Comments) => {
                                 <span class="username">${comment.user.username}</span>
                                 ${comment.user.username === loggedUser.username 
                                     ? `<span class="comment-author-flag">you</span>` : ""}
-                                <span class="date">${comment.createdAt}</span>
+                                <span class="date">${elapsedTime(new Date(comment.createdAt))}</span>
                             </div>
 
                             <div class="desktop-buttons">

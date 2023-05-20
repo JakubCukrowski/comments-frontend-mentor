@@ -3,8 +3,10 @@ import {loggedUser} from "../db/db"
 import {renderComment} from "./RenderComment"
 import { Comments } from "./Types"
 import { updateLocalStorage } from "../functions/UpdateLocalStorage"
+import { elapsedTime } from "../functions/ElapsedTime"
 
 export const addNewComment = () => {
+
     //catch container element
     const containerElement = document.querySelector(".container")
 
@@ -23,12 +25,14 @@ export const addNewComment = () => {
         `
     const submitBtns: NodeListOf<HTMLButtonElement> = newDivElement.querySelectorAll(".submit-reply-btn")
     const textarea: HTMLTextAreaElement = newDivElement.querySelector(".textarea") as HTMLTextAreaElement
+    
     submitBtns.forEach(submitBtn => submitBtn.addEventListener("click", () => {
+        const commentCreationDate: Date = new Date()
         
         const newComment: Comments = {
             id: commentsToObject.length + commentsToObject.map(comment => comment.replies).flat().length + 1,
             content: textarea.value,
-            createdAt: "2 minutes ago",
+            createdAt: commentCreationDate.toISOString(),
             score: 0,
             upvoted: false,
             downvoted: false,

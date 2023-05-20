@@ -9,7 +9,7 @@ export interface LoggedUser {
 export interface Replies {
     id: number;
     content: string;
-    createdAt: string;
+    createdAt: Date | string;
     score: number;
     upvoted: boolean;
     downvoted: boolean;
@@ -27,7 +27,7 @@ export interface Replies {
 export interface Comments {
     id: number;
     content: string;
-    createdAt: string;
+    createdAt: Date | string;
     score: number;
     upvoted: boolean;
     downvoted: boolean;

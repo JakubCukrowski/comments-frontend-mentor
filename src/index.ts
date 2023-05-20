@@ -18,4 +18,3 @@ commentsToObject.forEach(comment => {
 
 addNewComment()
 
-
