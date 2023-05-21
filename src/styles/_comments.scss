@@ -6,11 +6,15 @@ ul {
 .new-comment {
     background-color: $white;
     margin-bottom: 1.2em;
-    padding: 1.25em;
+    padding: 0.70em;
     border-radius: 0.4em;
     display: flex;
     flex-direction: column;
     max-width:700px;
+
+    @media screen and (min-width: 800px) {
+        padding: 1.25em;
+    }
     
     &:not(.new-comment) {
         min-height: 150px;
@@ -87,6 +91,7 @@ ul {
     margin-bottom: 20px;
     margin-top: -10px;
     padding: 12px;
+    max-width: 700px;
 
     @media screen and (min-width: 800px) {
         display: flex;
