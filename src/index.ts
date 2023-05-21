@@ -3,6 +3,7 @@ import {renderComment} from "./components/RenderComment"
 import {comments} from "./db/db"
 import { Comments } from "./components/Types"
 import {addNewComment} from "./components/AddNewComment"
+import { elapsedTime } from "./functions/ElapsedTime"
 
 const commentsToJSON: string = JSON.stringify(comments)
 if (localStorage.length === 0) {

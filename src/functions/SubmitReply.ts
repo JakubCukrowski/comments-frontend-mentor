@@ -7,6 +7,8 @@ import { createReplyToReply } from "./CreateReplyToReply"
 import { updateLocalStorage } from "./UpdateLocalStorage"
 
 export const submitReply = (e: Event) => {
+    const currentDate = new Date()
+
     //submit button
     const submitReplyButton = e.target as Element    
 
@@ -35,7 +37,7 @@ export const submitReply = (e: Event) => {
             newReply = {
                 id: newReplyId,
                     content: textarea.value.split(" ").slice(1).join(" "),
-                    createdAt: "1 week ago",
+                    createdAt: currentDate.toISOString(),
                     score: 0,
                     upvoted: false,
                     downvoted: false,
@@ -58,7 +60,7 @@ export const submitReply = (e: Event) => {
             newReply = {
                 id: newReplyId,
                     content: textarea.value.split(" ").slice(1).join(" "),
-                    createdAt: "1 week ago",
+                    createdAt: currentDate.toISOString(),
                     score: 0,
                     upvoted: false,
                     downvoted: false,

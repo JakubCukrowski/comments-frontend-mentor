@@ -76,7 +76,7 @@ button {
     background-color: $very-light-gray;
 
     @media screen and (min-width: 800px) {
-        width: 50px !important;
+        width: 40px !important;
         gap: 0.6em;
     }
 
@@ -98,7 +98,7 @@ button {
         display: flex;
         flex-direction: column;
         width: 80px;
-        margin-right: 12px;
+        margin-right: 20px;
         height: 106px;
     }
 }

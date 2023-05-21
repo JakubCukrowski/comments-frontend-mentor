@@ -2,9 +2,7 @@ import {loggedUser} from "../db/db"
 import { createReplyToReply } from "../functions/CreateReplyToReply"
 import { Replies } from "./Types"
 import { editReply } from "../functions/EditReply"
-import { deletePost } from "../functions/DeletePost"
-import { upvote } from "../functions/upvote"
-import { downvote } from "../functions/downvote"
+import { elapsedTime } from "../functions/ElapsedTime"
 
 export const renderReply = (reply: Replies) => {
 
@@ -30,7 +28,7 @@ export const renderReply = (reply: Replies) => {
                                 <span class="username">${reply.user.username}</span>
                                 ${reply.user.username === loggedUser.username 
                                     ? `<span class="comment-author-flag">you</span>` : ""}
-                                <span class="date">${reply.createdAt}</span>
+                                <span class="date">${elapsedTime(new Date(reply.createdAt))}</span>
                             </div>
 
                             <div class="desktop-buttons">
@@ -88,10 +86,22 @@ export const renderReply = (reply: Replies) => {
                 </button>`
                 }
         </div>
-    </div>
-
-        
+    </div>        
     `
+
+    const updateElapsedTime = () => {
+        const dateElement: HTMLSpanElement = newReplyLi.querySelector(".date")
+        if (dateElement) {
+            const commentDate = new Date(reply.createdAt)
+            dateElement.innerText = elapsedTime(commentDate)
+        }
+    }
+
+    updateElapsedTime()
+    
+    setInterval(() => {
+        updateElapsedTime()
+    }, 60000)
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)

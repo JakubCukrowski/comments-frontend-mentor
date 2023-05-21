@@ -97,6 +97,20 @@ export const renderComment = (comment: Comments) => {
             </div>
         </div>
     `
+
+    const updateElapsedTime = () => {
+        const dateElement: HTMLSpanElement = newCommentLi.querySelector(".date")
+        if (dateElement) {
+            const commentDate = new Date(comment.createdAt)
+            dateElement.innerText = elapsedTime(commentDate)
+        }
+    }
+
+    updateElapsedTime()
+    
+    setInterval(() => {
+        updateElapsedTime()
+    }, 60000)
     
     newCommentLi.id = `comment-${comment.id}`
 
