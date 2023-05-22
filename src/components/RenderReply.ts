@@ -3,6 +3,7 @@ import { createReplyToReply } from "../functions/CreateReplyToReply"
 import { Replies } from "./Types"
 import { editReply } from "../functions/EditReply"
 import { elapsedTime } from "../functions/ElapsedTime"
+import { deletePost } from "../functions/DeletePost"
 
 export const renderReply = (reply: Replies) => {
 
@@ -105,6 +106,9 @@ export const renderReply = (reply: Replies) => {
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)
+
+    const deleteBtns: NodeListOf<HTMLButtonElement> = newReplyLi.querySelectorAll(".delete-btn")
+    deleteBtns.forEach(deleteBtn => deleteBtn.addEventListener("click", deletePost))
 
     return newReplyLi
 }
