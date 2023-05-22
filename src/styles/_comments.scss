@@ -10,7 +10,6 @@ ul {
     border-radius: 0.4em;
     display: flex;
     flex-direction: column;
-    max-width:700px;
 
     @media screen and (min-width: 800px) {
         padding: 1.25em;
@@ -36,13 +35,15 @@ ul {
 
         .username {
             font-weight: 700;
+            color: $dark_blue;
         }
 
         .comment-author-flag {
             background-color: $moderate-blue;
             color: $white;
-            padding: 1px 2px;
+            padding: 1px 4px;
             border-radius: 0.1em;
+            font-size: 12px;
         }
 
         .date {
@@ -79,10 +80,10 @@ ul {
 
 .replies-container {
     border-left: 2px solid $light_gray;
-    padding-left: 20px;
+    padding-left: 30px;
 
     @media screen and (min-width: 800px) {
-        margin-left: 20px;
+        margin-left: 30px;
     }
 }
 
