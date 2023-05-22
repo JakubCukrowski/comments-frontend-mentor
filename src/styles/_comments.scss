@@ -80,10 +80,10 @@ ul {
 
 .replies-container {
     border-left: 2px solid $light_gray;
-    padding-left: 30px;
+    padding-left: 40px;
 
     @media screen and (min-width: 800px) {
-        margin-left: 30px;
+        margin-left: 40px;
     }
 }
 
