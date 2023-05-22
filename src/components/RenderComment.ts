@@ -110,7 +110,7 @@ export const renderComment = (comment: Comments) => {
     
     setInterval(() => {
         updateElapsedTime()
-    }, 60000)
+    }, 20000)
     
     newCommentLi.id = `comment-${comment.id}`
 

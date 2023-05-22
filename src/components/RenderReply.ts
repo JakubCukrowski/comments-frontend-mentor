@@ -102,7 +102,7 @@ export const renderReply = (reply: Replies) => {
     
     setInterval(() => {
         updateElapsedTime()
-    }, 60000)
+    }, 20000)
 
     newReplyLi.id = `reply-${reply.id}`
     newReplyLi.addEventListener("click", editReply)
